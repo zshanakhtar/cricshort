@@ -7,13 +7,14 @@ import type { Match } from "~/models/matches";
 
 interface MatchCardProps {
   match: Match;
+  clickable?: boolean;
 }
 
-export const MatchCard = ({ match }: MatchCardProps) => {
+export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
   const router = useRouter();
 
   const handleCardClick = () => {
-    router.push(`/match/${match.MatchID}`);
+    if (clickable) router.push(`/match/${match.MatchID}`);
   };
 
   const getStatusColor = (status: string) => {
@@ -51,8 +52,8 @@ export const MatchCard = ({ match }: MatchCardProps) => {
 
   return (
     <div
-      className="flex cursor-pointer flex-col gap-4 rounded-2xl bg-gradient-to-br from-white to-gray-50 p-6 shadow-md transition-all duration-200 outline-none hover:bg-blue-50/40 hover:shadow-2xl focus:bg-blue-100/40 focus:shadow-2xl"
-      tabIndex={0}
+      className={`flex flex-col gap-4 rounded-2xl bg-gradient-to-br from-white to-gray-50 p-6 shadow-md transition-all duration-200 outline-none ${clickable ? "cursor-pointer hover:bg-blue-50/40 hover:shadow-2xl focus:bg-blue-100/40 focus:shadow-2xl" : "cursor-default"}`}
+      tabIndex={clickable ? 0 : -1}
       onClick={handleCardClick}
     >
       {/* Status & Date Row */}

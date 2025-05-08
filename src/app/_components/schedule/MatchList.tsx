@@ -70,7 +70,7 @@ export const MatchList = ({ matches, filter }: MatchListProps) => {
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {matches.map((match) => (
-              <MatchCard key={match.MatchID} match={match} />
+              <MatchCard key={match.MatchID} match={match} clickable />
             ))}
           </div>
         </div>

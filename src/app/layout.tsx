@@ -5,6 +5,7 @@ import { Geist } from "next/font/google";
 import Link from "next/link";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import { Header } from "./_components/Header";
 
 export const metadata: Metadata = {
   title: "CricShort",
@@ -24,20 +25,7 @@ export default function RootLayout({
     <html lang="en" className={`${geist.variable}`}>
       <body className="min-h-screen bg-gray-100">
         <TRPCReactProvider>
-          <nav className="bg-indigo-600 p-4 text-white shadow-md">
-            <div className="container mx-auto">
-              <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-                <Link href="/" className="text-xl font-bold">
-                  CricShort
-                </Link>
-                <div className="flex space-x-4">
-                  <Link href="/schedule" className="hover:text-indigo-200">
-                    Schedule
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </nav>
+          <Header />
           <main className="container mx-auto p-4">{children}</main>
         </TRPCReactProvider>
       </body>

@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { posts } from "~/server/db/schema";
 import { matchesSchema } from "~/models/matches";
 
 export const matchesRouter = createTRPCRouter({
@@ -79,21 +78,5 @@ export const matchesRouter = createTRPCRouter({
       console.error("Error fetching or parsing match data:", error);
       throw error;
     }
-  }),
-
-  create: publicProcedure
-    .input(z.object({ name: z.string().min(1) }))
-    .mutation(async ({ ctx, input }) => {
-      await ctx.db.insert(posts).values({
-        name: input.name,
-      });
-    }),
-
-  getLatest: publicProcedure.query(async ({ ctx }) => {
-    const post = await ctx.db.query.posts.findFirst({
-      orderBy: (posts, { desc }) => [desc(posts.createdAt)],
-    });
-
-    return post ?? null;
   }),
 });

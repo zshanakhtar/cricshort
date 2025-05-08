@@ -4,46 +4,58 @@ export default function TeamPage() {
       <h1 className="text-2xl font-bold">Teams & Points Table</h1>
 
       {/* Points Table */}
-      <div className="overflow-x-auto rounded-lg bg-white shadow-md">
-        <table className="min-w-full">
+      <div className="overflow-x-auto rounded-2xl bg-gradient-to-br from-white to-gray-50 p-2 shadow-md">
+        <table className="min-w-full divide-y divide-gray-100">
           <thead>
-            <tr className="border-b bg-gray-50">
-              <th className="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+            <tr className="bg-gray-50">
+              <th className="px-6 py-3 text-left text-xs font-bold tracking-wider text-gray-500 uppercase">
                 Team
               </th>
-              <th className="px-6 py-3 text-center text-xs font-medium tracking-wider text-gray-500 uppercase">
+              <th className="px-6 py-3 text-center text-xs font-semibold tracking-wider text-gray-500 uppercase">
                 P
               </th>
-              <th className="px-6 py-3 text-center text-xs font-medium tracking-wider text-gray-500 uppercase">
+              <th className="px-6 py-3 text-center text-xs font-semibold tracking-wider text-gray-500 uppercase">
                 W
               </th>
-              <th className="px-6 py-3 text-center text-xs font-medium tracking-wider text-gray-500 uppercase">
+              <th className="px-6 py-3 text-center text-xs font-semibold tracking-wider text-gray-500 uppercase">
                 L
               </th>
-              <th className="px-6 py-3 text-center text-xs font-medium tracking-wider text-gray-500 uppercase">
+              <th className="px-6 py-3 text-center text-xs font-semibold tracking-wider text-gray-500 uppercase">
                 NRR
               </th>
-              <th className="px-6 py-3 text-center text-xs font-medium tracking-wider text-gray-500 uppercase">
+              <th className="px-6 py-3 text-center text-xs font-semibold tracking-wider text-gray-500 uppercase">
                 PTS
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200">
-            <tr>
+          <tbody className="divide-y divide-gray-50">
+            <tr className="transition-colors hover:bg-blue-50/40">
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="flex items-center space-x-3">
-                  <div className="h-8 w-8 rounded-full bg-gray-200"></div>
-                  <span className="font-medium">Chennai Super Kings</span>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white shadow">
+                    {/* Team logo here */}
+                  </div>
+                  <span className="font-semibold text-gray-800">
+                    Chennai Super Kings
+                  </span>
                 </div>
               </td>
-              <td className="px-6 py-4 text-center whitespace-nowrap">8</td>
-              <td className="px-6 py-4 text-center whitespace-nowrap">6</td>
-              <td className="px-6 py-4 text-center whitespace-nowrap">2</td>
-              <td className="px-6 py-4 text-center whitespace-nowrap">
+              <td className="px-6 py-4 text-center text-base font-medium text-gray-700">
+                8
+              </td>
+              <td className="px-6 py-4 text-center text-base font-medium text-green-600">
+                6
+              </td>
+              <td className="px-6 py-4 text-center text-base font-medium text-red-500">
+                2
+              </td>
+              <td className="px-6 py-4 text-center text-base font-medium text-gray-700">
                 +0.823
               </td>
-              <td className="px-6 py-4 text-center font-medium whitespace-nowrap">
-                12
+              <td className="px-6 py-4 text-center text-base font-bold">
+                <span className="inline-block rounded bg-blue-100 px-3 py-1 text-blue-700">
+                  12
+                </span>
               </td>
             </tr>
             {/* Add more rows for other teams */}
@@ -54,33 +66,34 @@ export default function TeamPage() {
       {/* Team Cards Grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {/* Team Card */}
-        <div className="overflow-hidden rounded-lg bg-white shadow-md">
+        <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-50 shadow-md transition-shadow duration-200 hover:shadow-xl">
           <div className="h-32 bg-indigo-600"></div>
-          <div className="p-4">
-            <div className="flex items-center space-x-3">
-              <div className="h-16 w-16 rounded-full bg-gray-200"></div>
+          <div className="flex flex-col gap-3 p-5">
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow"></div>
               <div>
-                <h3 className="font-bold">Mumbai Indians</h3>
+                <h3 className="text-lg font-bold text-gray-800">
+                  Mumbai Indians
+                </h3>
                 <p className="text-sm text-gray-500">5 times champion</p>
               </div>
             </div>
-            <div className="mt-4 grid grid-cols-3 gap-4 text-center">
+            <div className="mt-2 grid grid-cols-3 gap-4 text-center">
               <div>
-                <p className="text-lg font-bold">8</p>
+                <p className="text-lg font-bold text-gray-800">8</p>
                 <p className="text-xs text-gray-500">Matches</p>
               </div>
               <div>
-                <p className="text-lg font-bold">5</p>
+                <p className="text-lg font-bold text-green-600">5</p>
                 <p className="text-xs text-gray-500">Won</p>
               </div>
               <div>
-                <p className="text-lg font-bold">10</p>
+                <p className="text-lg font-bold text-blue-700">10</p>
                 <p className="text-xs text-gray-500">Points</p>
               </div>
             </div>
           </div>
         </div>
-
         {/* Repeat similar cards for other teams */}
       </div>
     </div>

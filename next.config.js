@@ -5,6 +5,16 @@
 import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
-const config = {};
+// Add image domain configuration to allow the specified hostname
+const config = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "scores.iplt20.com",
+      },
+    ],
+  },
+};
 
 export default config;

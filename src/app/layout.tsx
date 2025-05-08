@@ -31,14 +31,8 @@ export default function RootLayout({
                   CricShort
                 </Link>
                 <div className="flex space-x-4">
-                  <Link href="/match" className="hover:text-indigo-200">
-                    Match
-                  </Link>
                   <Link href="/schedule" className="hover:text-indigo-200">
                     Schedule
-                  </Link>
-                  <Link href="/team" className="hover:text-indigo-200">
-                    Teams
                   </Link>
                 </div>
               </div>

@@ -1,13 +1,21 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between bg-slate-900 px-4 py-3 shadow-md">
-      <div className="text-xl font-bold tracking-wide text-white">
-        CricShort
+      <div className="flex flex-row items-center gap-2 text-xl font-bold tracking-wide text-white">
+        <Image
+          src="/logo.svg"
+          alt="Logo"
+          width={40}
+          height={40}
+          className="ml-2 inline-block h-8 w-8 rounded-full bg-white shadow"
+        />
+        <span>CricShort</span>
       </div>
       <nav
         className={`${
@@ -18,14 +26,14 @@ export function Header() {
       >
         <Link
           href="/points"
-          className="block rounded-full px-4 py-2 text-white hover:text-indigo-300 hover:bg-slate-800"
+          className="block rounded-full px-4 py-2 text-white hover:bg-slate-800 hover:text-indigo-300"
           onClick={() => setOpen(false)}
         >
           Points
         </Link>
         <Link
           href="/schedule"
-          className="block rounded-full px-4 py-2 text-white hover:text-indigo-300 hover:bg-slate-800"
+          className="block rounded-full px-4 py-2 text-white hover:bg-slate-800 hover:text-indigo-300"
           onClick={() => setOpen(false)}
         >
           Schedule

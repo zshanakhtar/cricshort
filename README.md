@@ -1,29 +1,59 @@
-# Create T3 App
+# CricShort
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A T3 Stack application for cricket match management and statistics.
 
-## What's next? How do I make an app with this?
+## Quick Start (Using Docker)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+```bash
+# Build and run the application
+docker build -t cs .
+docker run -p 3000:3000 --name cricshort cs
+```
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+Access the application at http://localhost:3000
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+### Updating Database (Inside Docker)
 
-## Learn More
+To update match data, points, or innings, run the following scripts:
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+```bash
+# Update matches
+docker exec -it cricshort bun run src/scripts/matches.ts
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+# Update points table
+docker exec -it cricshort bun run src/scripts/points.ts
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+# Update innings data
+docker exec -it cricshort bun run src/scripts/innings.ts
+```
 
-## How do I deploy this?
+## Running Without Docker
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+### Prerequisites
+- [Bun](https://bun.sh) installed on your system
+- SQLite
+
+### Steps
+```bash
+# Install dependencies
+bun install
+
+# Run in development mode
+bun run dev
+
+# Or build and run in production
+bun run build
+bun run start
+```
+
+## Database
+
+The application uses SQLite stored in `db.sqlite` in the root folder. You can use any SQLite browser to view or modify the database contents.
+
+## Tech Stack
+
+Built with [T3 Stack](https://create.t3.gg/):
+- Next.js for the frontend
+- tRPC for type-safe APIs
+- Drizzle for database ORM
+- Tailwind CSS for styling

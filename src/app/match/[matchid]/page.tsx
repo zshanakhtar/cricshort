@@ -7,52 +7,130 @@ import type { Match } from "~/models/matches";
 import { api } from "~/trpc/react";
 import { useParams } from "next/navigation";
 
+// Type guard to check if unknown data matches Match schema
+function isValidMatch(data: unknown): data is Match {
+  if (!data || typeof data !== "object") return false;
+  const d = data as Record<string, unknown>;
+  return (
+    typeof d.MatchID === "number" &&
+    (d.MatchStatus === null || typeof d.MatchStatus === "string") &&
+    (d.MatchName === null || typeof d.MatchName === "string")
+  );
+}
+
 export default function MatchPage() {
-    const [tab, setTab] = useState<"live" | "scorecard" | "commentary">("live");
-  const { matchid } = useParams();
+  const [tab, setTab] = useState<"scorecard" | "commentary">("scorecard");
 
-  const match = api.matches.getMatchById?.useQuery
-    ? api.matches.getMatchById.useQuery({ matchId: matchid as string })
-    : { data: null, isLoading: false };
+  // Type-safe params handling
+  const params = useParams();
+  const matchid = useMemo(() => {
+    if (!params || typeof params.matchid !== "string") return null;
+    return params.matchid;
+  }, [params]);
 
-  const m = useMemo(() => {
-    if (!match.data) return null;
-    return Array.isArray(match.data) ? match.data[0] : match.data;
-  }, [match.data]);
+  // Type-safe query with proper typing
+  const matchQuery = api.matches.getMatchById.useQuery(
+    { matchId: matchid ?? "" },
+    {
+      enabled: matchid !== null,
+      retry: false,
+    },
+  );
+
+  // Type-safe data conversion with validation
+  const match = useMemo<Match | null>(() => {
+    const data = matchQuery.data;
+    if (!data) return null;
+
+    try {
+      if (isValidMatch(data)) {
+        return data;
+      }
+      return null;
+    } catch (error) {
+      console.error("Error converting match data:", error);
+      return null;
+    }
+  }, [matchQuery.data]);
+
+  if (matchQuery.isLoading) {
+    return (
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold">Match Details</h1>
+        <div className="animate-pulse">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!matchid) {
+    return (
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold">Match Details</h1>
+        <div className="text-red-500">Invalid match ID</div>
+      </div>
+    );
+  }
+
+  if (matchQuery.error) {
+    return (
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold">Match Details</h1>
+        <div className="text-red-500">
+          {matchQuery.error instanceof Error
+            ? matchQuery.error.message
+            : "Error loading match details"}
+        </div>
+      </div>
+    );
+  }
+
+  if (!match) {
+    return (
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold">Match Details</h1>
+        <div className="text-red-500">Match data not found</div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">Live Match</h1>
+      <h1 className="text-2xl font-bold">Match Details</h1>
 
-      {/* Live Match Card (top card) */}
-      {m && <MatchCard match={m}/>}
+      {/* Live Match Card */}
+      <MatchCard match={match} />
 
       {/* Match Details Tabs */}
       <div className="mt-4 rounded-2xl bg-gradient-to-br from-white to-gray-50 p-6 shadow-md">
-        <div className="flex space-x-4 border-b border-gray-100">
+        <div className="mb-4 flex gap-2">
           <button
-            className={`pb-2 font-bold transition-colors rounded-t-md shadow-sm ${tab === "live" ? "border-b-2 border-indigo-600 text-indigo-600 bg-white" : "text-gray-500 hover:text-gray-700"}`}
-            onClick={() => setTab("live")}
-          >
-            Live
-          </button>
-          <button
-            className={`pb-2 font-bold transition-colors rounded-t-md shadow-sm ${tab === "scorecard" ? "border-b-2 border-indigo-600 text-indigo-600 bg-white" : "text-gray-500 hover:text-gray-700"}`}
+            className={`rounded-2xl px-4 py-2 font-semibold shadow transition-all duration-150 focus:ring-2 focus:ring-blue-400 focus:outline-none ${
+              tab === "scorecard"
+                ? "bg-blue-600 text-white"
+                : "bg-gray-100 text-blue-700 hover:bg-blue-50"
+            }`}
             onClick={() => setTab("scorecard")}
           >
             Scorecard
           </button>
           <button
-            className={`pb-2 font-bold transition-colors rounded-t-md shadow-sm ${tab === "commentary" ? "border-b-2 border-indigo-600 text-indigo-600 bg-white" : "text-gray-500 hover:text-gray-700"}`}
+            className={`rounded-2xl px-4 py-2 font-semibold shadow transition-all duration-150 focus:ring-2 focus:ring-blue-400 focus:outline-none ${
+              tab === "commentary"
+                ? "bg-blue-600 text-white"
+                : "bg-gray-100 text-blue-700 hover:bg-blue-50"
+            }`}
             onClick={() => setTab("commentary")}
           >
             Commentary
           </button>
         </div>
         <div className="mt-4">
-          {tab === "live" && <p className="text-gray-600">Live commentary and updates will appear here...</p>}
-          {tab === "scorecard" && <ScoreCard matchId={matchid as string} />}
-          {tab === "commentary" && <p className="text-gray-600">Ball by ball commentary will appear here...</p>}
+          {tab === "scorecard" && <ScoreCard matchId={matchid} />}
+          {tab === "commentary" && (
+            <p className="text-gray-600">
+              Ball by ball commentary will appear here...
+            </p>
+          )}
         </div>
       </div>
     </div>

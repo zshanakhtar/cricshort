@@ -14,10 +14,10 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
   const router = useRouter();
 
   const handleCardClick = () => {
-    if (clickable) router.push(`/match/${match.MatchID}`);
+    if (clickable && match.MatchID) router.push(`/match/${match.MatchID}`);
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status: string | null) => {
     switch (status) {
       case "Live":
         return "bg-red-500 text-white";
@@ -30,21 +30,23 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
 
   const getMatchResult = (match: Match) => {
     if (match.MatchStatus === "Live") {
-      return match.Comments || match.FirstBattingSummary;
+      return match.Comments ?? match.FirstBattingSummary ?? "Live";
     }
     if (match.MatchStatus === "Post") {
-      return match.Comments;
+      return match.Comments ?? "Completed";
     }
-    return `${match.MatchTime} IST`;
+    return match.MatchTime ? `${match.MatchTime} IST` : "Upcoming";
   };
 
   const homeTeamShortName = useMemo(() => {
+    if (!match.HomeTeamName) return "";
     return match.HomeTeamName.split(" ")
       .map((word) => word[0])
       .join("");
   }, [match.HomeTeamName]);
 
   const awayTeamShortName = useMemo(() => {
+    if (!match.AwayTeamName) return "";
     return match.AwayTeamName.split(" ")
       .map((word) => word[0])
       .join("");
@@ -56,11 +58,10 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
       tabIndex={clickable ? 0 : -1}
       onClick={handleCardClick}
     >
-      {/* Status & Date Row */}
       <div className="mb-2 flex w-full items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-xs font-semibold text-gray-400">
-            #{match.MatchOrder}
+            #{match.MatchOrder ?? ""}
           </span>
           {match.MatchStatus === "Live" && (
             <span className="animate-pulse rounded-md bg-red-500/90 px-3 py-1 text-xs font-bold text-white shadow-sm">
@@ -75,12 +76,13 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
                 ? "Completed"
                 : match.MatchStatus === "UpComing"
                   ? "Upcoming"
-                  : match.MatchStatus}
+                  : (match.MatchStatus ?? "Unknown")}
             </span>
           )}
         </div>
         <span className="rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-500">
-          {match.MatchDateNew} • {match.MatchTime} IST
+          {match.MatchDateNew ?? match.MatchDate ?? "TBD"} •{" "}
+          {match.MatchTime ? `${match.MatchTime} IST` : "TBD"}
         </span>
       </div>
 
@@ -89,50 +91,52 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
         {/* Home Team */}
         <div className="flex min-w-0 items-center gap-3">
           <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
-            <Image
-              src={match.HomeTeamLogo}
-              alt={match.HomeTeamName}
-              fill
-              className="object-contain p-1"
-            />
+            {match.HomeTeamLogo && match.HomeTeamName && (
+              <Image
+                src={match.HomeTeamLogo}
+                alt={match.HomeTeamName}
+                fill
+                className="object-contain p-1"
+              />
+            )}
           </div>
           <div className="flex min-w-0 flex-col">
             <span className="hidden truncate text-base font-bold text-gray-800 lg:block">
-              {match.HomeTeamName}
+              {match.HomeTeamName ?? "TBD"}
             </span>
             <span className="hidden truncate text-base font-bold text-gray-800 sm:block lg:hidden">
-              {homeTeamShortName}
+              {homeTeamShortName || "TBD"}
             </span>
             <span className="truncate text-base font-bold text-gray-800 sm:hidden">
-              {homeTeamShortName}
+              {homeTeamShortName || "TBD"}
             </span>
           </div>
         </div>
-        {/* VS */}
         <div className="mx-2 flex flex-col items-center">
           <span className="text-xs font-semibold tracking-widest text-gray-400">
             VS
           </span>
         </div>
-        {/* Away Team */}
         <div className="flex min-w-0 flex-row-reverse items-center gap-3">
           <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
-            <Image
-              src={match.AwayTeamLogo}
-              alt={match.AwayTeamName}
-              fill
-              className="object-contain p-1"
-            />
+            {match.AwayTeamLogo && match.AwayTeamName && (
+              <Image
+                src={match.AwayTeamLogo}
+                alt={match.AwayTeamName}
+                fill
+                className="object-contain p-1"
+              />
+            )}
           </div>
           <div className="flex min-w-0 flex-col text-right">
             <span className="hidden truncate text-base font-bold text-gray-800 lg:block">
-              {match.AwayTeamName}
+              {match.AwayTeamName ?? "TBD"}
             </span>
             <span className="hidden truncate text-base font-bold text-gray-800 sm:block lg:hidden">
-              {awayTeamShortName}
+              {awayTeamShortName || "TBD"}
             </span>
             <span className="truncate text-base font-bold text-gray-800 sm:hidden">
-              {awayTeamShortName}
+              {awayTeamShortName || "TBD"}
             </span>
           </div>
         </div>
@@ -148,7 +152,8 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
       {/* Ground & City */}
       <div className="mt-1 text-center text-xs text-gray-500">
         <span className="inline-block rounded bg-gray-100 px-2 py-1 font-medium">
-          {match.GroundName}, {match.city}
+          {match.GroundName ?? "TBD"}
+          {match.city ? `, ${match.city}` : ""}
         </span>
       </div>
     </div>

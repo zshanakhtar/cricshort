@@ -8,53 +8,58 @@ interface MatchListProps {
 }
 
 export const MatchList = ({ matches, filter }: MatchListProps) => {
+  const processedMatches = useMemo(
+    () =>
+      matches.map((match) => ({
+        ...match,
+        MatchName: match.MatchName ?? "Unknown Match",
+        MatchDate: match.MatchDate ?? "Unknown Date",
+      })),
+    [matches],
+  );
+
   const filteredMatches = useMemo(() => {
-    if (filter === "all") {
-      return matches;
-    } else if (filter === "completed") {
-      return matches.filter(
-        (match) => new Date(match.MatchDateNew) < new Date(),
-      );
-    } else if (filter === "upcoming") {
-      return matches.filter(
-        (match) => new Date(match.MatchDateNew) >= new Date(),
-      );
-    }
-    return matches;
-  }, [matches, filter]);
+    return processedMatches.filter((match) => {
+      const matchDate = match.MatchDateNew ?? match.MatchDate;
+      if (!matchDate) return false;
+      switch (filter) {
+        case "completed":
+          return match.MatchStatus === "Post";
+        case "upcoming":
+          return match.MatchStatus === "UpComing";
+        default:
+          return true;
+      }
+    });
+  }, [processedMatches, filter]);
 
   const sortedMatches = useMemo(() => {
-    const sorted = [...filteredMatches];
-    if (filter === "all") {
-      sorted.sort(
-        (a, b) =>
-          new Date(a.MatchDateNew).getTime() -
-          new Date(b.MatchDateNew).getTime(),
-      );
-    } else if (filter === "completed") {
-      sorted.sort(
-        (a, b) =>
-          new Date(b.MatchDateNew).getTime() -
-          new Date(a.MatchDateNew).getTime(),
-      );
-    } else if (filter === "upcoming") {
-      sorted.sort(
-        (a, b) =>
-          new Date(a.MatchDateNew).getTime() -
-          new Date(b.MatchDateNew).getTime(),
-      );
-    }
-    return sorted;
+    return [...filteredMatches].sort((a, b) => {
+      const aDate = a.MatchDateNew ?? a.MatchDate ?? "";
+      const bDate = b.MatchDateNew ?? b.MatchDate ?? "";
+      const aTime = new Date(aDate).getTime();
+      const bTime = new Date(bDate).getTime();
+
+      if (isNaN(aTime) && isNaN(bTime)) return 0;
+      if (isNaN(aTime)) return 1;
+      if (isNaN(bTime)) return -1;
+
+      return filter === "completed" ? bTime - aTime : aTime - bTime;
+    });
   }, [filteredMatches, filter]);
 
   const groupedMatches = useMemo(() => {
     return sortedMatches.reduce<Record<string, Match[]>>((acc, match) => {
-      const date = match.MatchDateNew;
-      if (!acc[date]) {
-        acc[date] = [];
-      }
-      acc[date].push(match);
-      return acc;
+      const matchDate = match.MatchDateNew ?? match.MatchDate;
+      const validDate =
+        matchDate && !isNaN(new Date(matchDate).getTime())
+          ? matchDate
+          : "No Date";
+
+      return {
+        ...acc,
+        [validDate]: [...(acc[validDate] ?? []), match],
+      };
     }, {});
   }, [sortedMatches]);
 

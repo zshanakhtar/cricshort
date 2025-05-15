@@ -2,7 +2,6 @@ import "~/styles/globals.css";
 
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
-import Link from "next/link";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { Header } from "./_components/Header";

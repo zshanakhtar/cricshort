@@ -10,8 +10,7 @@ docker build -t cs .
 docker run -p 3000:3000 --name cricshort cs
 ```
 
-Access the application at http://localhost:3000/points
-or http://localhost:3000/schedule
+Access the application at http://localhost:3000/
 
 ### Updating Database (Inside Docker)
 

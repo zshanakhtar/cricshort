@@ -11,12 +11,13 @@ export default async function SchedulePage() {
     const liveMatch = matches.Matchsummary.find(
       (match) => match.MatchStatus === "Live",
     );
-    return liveMatch ? liveMatch : null;
+    return liveMatch ?? null;
   })();
   if (livematchData) {
     return (
-      <div className="flex h-full w-full flex-col items-center justify-center">
+      <div className="flex h-full w-full flex-col justify-center gap-6">
         <MatchCard match={livematchData} clickable />
+        <PointsTable points={points} />
       </div>
     );
   }

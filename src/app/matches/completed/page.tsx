@@ -1,11 +1,9 @@
-"use client";
-
 import { FilterTabs } from "~/app/_components/schedule/FilterTabs";
 import { MatchList } from "~/app/_components/schedule/MatchList";
-import { api } from "~/trpc/react";
+import { api } from "~/trpc/server";
 
-export default function CompletedMatchesPage() {
-  const [matches] = api.matches.getAllMatches.useSuspenseQuery();
+export default async function CompletedMatchesPage() {
+  const matches = await api.matches.getAllMatches();
 
   return (
     <>

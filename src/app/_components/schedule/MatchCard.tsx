@@ -118,10 +118,10 @@ export function MatchCard({ match, clickable = false }: MatchCardProps) {
               {match.HomeTeamName ?? "TBD"}
             </span>
             <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold sm:block lg:hidden">
-              {homeTeamShortName || "TBD"}
+              {homeTeamShortName ?? "TBD"}
             </span>
             <span className="text-primary-light-500 dark:text-primary-dark-100 truncate text-base font-bold sm:hidden">
-              {homeTeamShortName || "TBD"}
+              {homeTeamShortName ?? "TBD"}
             </span>
           </div>
         </div>
@@ -146,10 +146,10 @@ export function MatchCard({ match, clickable = false }: MatchCardProps) {
               {match.AwayTeamName ?? "TBD"}
             </span>
             <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold sm:block lg:hidden">
-              {awayTeamShortName || "TBD"}
+              {awayTeamShortName ?? "TBD"}
             </span>
             <span className="text-primary-light-500 dark:text-primary-dark-100 truncate text-base font-bold sm:hidden">
-              {awayTeamShortName || "TBD"}
+              {awayTeamShortName ?? "TBD"}
             </span>
           </div>
         </div>

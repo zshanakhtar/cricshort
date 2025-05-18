@@ -68,14 +68,21 @@ export const MatchList = ({ matches, filter }: MatchListProps) => {
       {Object.entries(groupedMatches).map(([date, matches]) => (
         <div key={date} className="space-y-4">
           <div className="flex w-full items-center gap-2">
-            <span className="text-lg font-semibold whitespace-nowrap text-gray-700">
+            <span className="text-secondary-light-50 dark:text-secondary-dark-800 text-lg font-semibold whitespace-nowrap">
               {date}
             </span>
-            <div className="h-px flex-1 bg-gray-300" style={{ minWidth: 0 }} />
+            <div
+              className="bg-secondary-light-800 dark:bg-secondary-dark-950 h-px flex-1"
+              style={{ minWidth: 0 }}
+            />
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {matches.map((match) => (
-              <MatchCard key={match.MatchID} match={match} clickable />
+              <MatchCard
+                key={match.MatchID}
+                match={match}
+                clickable={match.MatchStatus !== "UpComing"}
+              />
             ))}
           </div>
         </div>

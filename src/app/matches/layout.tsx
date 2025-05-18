@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">Match Schedule</h1>
-      <div className="bg-transparent min-h-screen">
+      <div className="min-h-screen bg-transparent">
         <div className="container mx-auto px-2 py-4 sm:px-4">{children}</div>
       </div>
     </div>

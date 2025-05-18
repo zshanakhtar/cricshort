@@ -6,7 +6,7 @@ interface PointsRowProps {
 }
 
 export const PointsRow = ({ entry }: PointsRowProps) => (
-  <tr className="hover:bg-accent-primary-light-950/20 dark:hover:bg-accent-primary-dark-50/20 text-center text-2xl transition-colors sm:text-base text-primary-light-800 dark:text-primary-dark-800">
+  <tr className="hover:bg-accent-primary-light-950/20 dark:hover:bg-accent-primary-dark-50/20 text-primary-light-800 dark:text-primary-dark-800 text-center text-2xl transition-colors sm:text-base">
     <td className="text-primary-light-400 dark:text-primary-dark-500 px-10 py-4 font-medium">
       {entry.OrderNo}
     </td>

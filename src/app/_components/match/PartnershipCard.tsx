@@ -145,7 +145,7 @@ export function PartnershipCard({
               <div className="relative mb-1 flex items-center justify-between">
                 <span className="font-semibold text-gray-800">{p.left}</span>
                 <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0 text-sm">
-                  <span className="font-bold text-blue-700">
+                  <span className="text-accent-primary-light-500 dark:text-accent-primary-dark-500 font-bold">
                     {p.PartnershipTotal}
                     {"("}
                     {balls1 + balls2}
@@ -159,7 +159,7 @@ export function PartnershipCard({
                 </div>
                 <span className="font-semibold text-gray-800">{p.right}</span>
               </div>
-              <div className="relative flex h-8 w-full items-center rounded border border-blue-200 bg-blue-50">
+              <div className="border-accent-primary-light-900 bg-accent-primary-light-950 relative flex h-8 w-full items-center rounded border">
                 <div
                   className="absolute top-0 left-1/2 h-full"
                   style={{
@@ -169,7 +169,7 @@ export function PartnershipCard({
                   }}
                 />
                 <div
-                  className={`absolute top-0 right-1/2 flex h-full items-center justify-end text-xs font-bold transition-all duration-300 ${leftIsHigher ? "bg-blue-600 text-white" : "border-2 border-blue-600 bg-white text-blue-700"}`}
+                  className={`absolute top-0 right-1/2 flex h-full items-center justify-end text-xs font-bold transition-all duration-300 ${leftIsHigher ? "bg-accent-primary-light-600 dark:bg-accent-primary-light-600 text-white" : "border-accent-primary-light-600 text-accent-primary-light-600 border-2 bg-white"}`}
                   style={{
                     width: `${((Number(p.PartnershipTotal) / maxPartnership) * (runs1 / (total || 1)) * 100) / 2}%`,
                     minWidth: 48,
@@ -183,7 +183,7 @@ export function PartnershipCard({
                   </span>
                 </div>
                 <div
-                  className={`absolute top-0 left-1/2 flex h-full items-center justify-start text-xs font-bold transition-all duration-300 ${!leftIsHigher ? "bg-blue-600 text-white" : "border-2 border-blue-600 bg-white text-blue-700"}`}
+                  className={`absolute top-0 left-1/2 flex h-full items-center justify-start text-xs font-bold transition-all duration-300 ${!leftIsHigher ? "bg-accent-primary-light-600 dark:bg-accent-primary-light-600 text-white" : "border-accent-primary-light-600 text-accent-primary-light-600 border-2 bg-white"}`}
                   style={{
                     width: `${((Number(p.PartnershipTotal) / maxPartnership) * (runs2 / (total || 1)) * 100) / 2}%`,
                     minWidth: 48,

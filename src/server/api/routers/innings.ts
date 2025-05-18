@@ -1,6 +1,11 @@
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
-import { battingCardSchema, bowlingCardSchema, extrasSchema, partnershipScoreSchema } from "~/models/innings";
+import {
+  battingCardSchema,
+  bowlingCardSchema,
+  extrasSchema,
+  partnershipScoreSchema,
+} from "~/models/innings";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { db } from "~/server/db/index";
 import {
@@ -57,10 +62,12 @@ export const inningsRouter = createTRPCRouter({
       const key = input.innings === "1" ? "Innings1" : "Innings2";
       return {
         [key]: {
-          BattingCard: batting.map(it=>battingCardSchema.parse(it)),
-          BowlingCard: bowling.map(it=>bowlingCardSchema.parse(it)),
-          Extras: extrasData.map(it=>extrasSchema.parse(it)),
-          PartnershipScores: partnerships.map(it=>partnershipScoreSchema.parse(it)),
+          BattingCard: batting.map((it) => battingCardSchema.parse(it)),
+          BowlingCard: bowling.map((it) => bowlingCardSchema.parse(it)),
+          Extras: extrasData.map((it) => extrasSchema.parse(it)),
+          PartnershipScores: partnerships.map((it) =>
+            partnershipScoreSchema.parse(it),
+          ),
         },
       };
     }),

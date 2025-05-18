@@ -3,7 +3,6 @@ import type {
   BattingCard as BattingCardType,
   BowlingCard as BowlingCardType,
   Extras,
-  PartnershipScore,
 } from "~/models/innings";
 import { api } from "~/trpc/react";
 import { PartnershipCard } from "./PartnershipCard";
@@ -14,7 +13,7 @@ function ExtrasCard({ extras }: { extras: Extras[] }) {
   const e = extras && extras.length > 0 ? extras[0] : undefined;
   if (!e) return null;
   return (
-    <div className="bg-accent-primary-light-50 dark:bg-accent-primary-dark-50 mb-4 rounded-xl p-2 shadow-inner sm:p-4">
+    <div className="bg-accent-primary-light-950 dark:bg-accent-primary-dark-50 mb-4 rounded-xl p-2 shadow-inner sm:p-4">
       <div className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 mb-2 text-sm font-bold">
         Extras
       </div>
@@ -29,10 +28,8 @@ function ExtrasCard({ extras }: { extras: Extras[] }) {
         {e.Penalty && <span>Penalty: {e.Penalty}</span>}
       </div>
       <div className="text-primary-light-600 dark:text-primary-dark-600 mt-2 text-xs">
-        {e.BattingTeamName}{" "}
-        {e.Total.replace(/\\\//g, "/")} (
-        {e.FallWickets} wkts, {e.FallOvers} ov) |
-        Run Rate: {e.CurrentRunRate}
+        {e.BattingTeamName} {e.Total.replace(/\\\//g, "/")} ({e.FallWickets}{" "}
+        wkts, {e.FallOvers} ov) | Run Rate: {e.CurrentRunRate}
       </div>
     </div>
   );
@@ -44,34 +41,20 @@ function BattingCard({ battingCard }: { battingCard: BattingCardType[] }) {
       <h2 className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 mb-2 text-lg font-bold">
         Batting
       </h2>
-      <div className="from-secondary-light-100 to-secondary-light-200 dark:from-secondary-dark-100 dark:to-secondary-dark-200 overflow-x-auto rounded-2xl bg-gradient-to-br shadow-md">
+      <div className="from-secondary-light-800 to-secondary-light-900 dark:from-secondary-dark-100 dark:to-secondary-dark-200 overflow-x-auto rounded-2xl bg-gradient-to-br shadow-md">
         <table className="min-w-full text-sm">
           <thead>
-            <tr className="bg-accent-primary-light-100 dark:bg-accent-primary-dark-100">
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                #
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-2 py-2 text-left text-xs font-bold sm:px-3">
+            <tr className="bg-accent-primary-light-100 dark:bg-accent-primary-dark-100 text-secondary-light-950 dark:text-accent-secondary-dark-800">
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">#</th>
+              <th className="px-2 py-2 text-left text-xs font-bold sm:px-3">
                 Player
               </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                R
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                B
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                4s
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                6s
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                SR
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                Out
-              </th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">R</th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">B</th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">4s</th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">6s</th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">SR</th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">Out</th>
             </tr>
           </thead>
           <tbody>
@@ -109,7 +92,7 @@ function BattingCard({ battingCard }: { battingCard: BattingCardType[] }) {
                 <td className="text-primary-light-600 dark:text-primary-dark-600 px-1 py-1 sm:px-3">
                   {player.StrikeRate}
                 </td>
-                <td className="text-secondary-light-800 dark:text-secondary-dark-800 px-1 py-1 text-xs sm:px-3">
+                <td className="text-secondary-light-100 dark:text-secondary-dark-800 px-1 py-1 text-xs sm:px-3">
                   {player.ShortOutDesc}
                 </td>
               </tr>
@@ -127,37 +110,21 @@ function BowlingCard({ bowlingCard }: { bowlingCard: BowlingCardType[] }) {
       <h2 className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 mb-2 text-lg font-bold">
         Bowling
       </h2>
-      <div className="from-secondary-light-100 to-secondary-light-200 dark:from-secondary-dark-100 dark:to-secondary-dark-200 overflow-x-auto rounded-2xl bg-gradient-to-br shadow-md">
+      <div className="from-secondary-light-800 to-secondary-light-900 dark:from-secondary-dark-100 dark:to-secondary-dark-200 overflow-x-auto rounded-2xl bg-gradient-to-br shadow-md">
         <table className="min-w-full text-sm">
           <thead>
-            <tr className="bg-accent-primary-light-100 dark:bg-accent-primary-dark-100">
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                #
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-2 py-2 text-left text-xs font-bold sm:px-3">
+            <tr className="bg-accent-primary-light-100 dark:bg-accent-primary-dark-100 text-secondary-light-950 dark:text-accent-secondary-dark-800">
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">#</th>
+              <th className="px-2 py-2 text-left text-xs font-bold sm:px-3">
                 Player
               </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                O
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                M
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                R
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                W
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                Econ
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                4s
-              </th>
-              <th className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 px-1 py-2 text-xs font-bold sm:px-3">
-                6s
-              </th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">O</th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">M</th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">R</th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">W</th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">Econ</th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">4s</th>
+              <th className="px-1 py-2 text-xs font-bold sm:px-3">6s</th>
             </tr>
           </thead>
           <tbody>
@@ -219,22 +186,22 @@ export default function ScoreCard({ matchId }: ScoreCardProps) {
   const innings1 = api.innings.getInnings.useQuery({ matchId, innings: "1" });
   const innings2 = api.innings.getInnings.useQuery({ matchId, innings: "2" });
 
-  const innings1Batting = innings1.data?.Innings1?.BattingCard
-    
-  const innings1Bowling = innings1.data?.Innings1?.BowlingCard
+  const innings1Batting = innings1.data?.Innings1?.BattingCard;
 
-  const innings1Extras = innings1.data?.Innings1?.Extras
-  
-  const innings1Partnerships = innings1.data?.Innings1?.PartnershipScores
-  
-  const innings2Batting = innings2.data?.Innings2?.BattingCard
-  
-  const innings2Bowling = innings2.data?.Innings2?.BowlingCard
-  
-  const innings2Extras = innings2.data?.Innings2?.Extras
-  
-  const innings2Partnerships = innings2.data?.Innings2?.PartnershipScores
-  
+  const innings1Bowling = innings1.data?.Innings1?.BowlingCard;
+
+  const innings1Extras = innings1.data?.Innings1?.Extras;
+
+  const innings1Partnerships = innings1.data?.Innings1?.PartnershipScores;
+
+  const innings2Batting = innings2.data?.Innings2?.BattingCard;
+
+  const innings2Bowling = innings2.data?.Innings2?.BowlingCard;
+
+  const innings2Extras = innings2.data?.Innings2?.Extras;
+
+  const innings2Partnerships = innings2.data?.Innings2?.PartnershipScores;
+
   if (innings1.isLoading || innings2.isLoading) {
     return <div className="p-4">Loading...</div>;
   }
@@ -253,8 +220,8 @@ export default function ScoreCard({ matchId }: ScoreCardProps) {
         <button
           className={`focus:ring-accent-secondary-light-800 dark:focus:ring-accent-secondary-dark-800 rounded-2xl px-3 py-1.5 text-sm font-semibold shadow transition-all duration-150 focus:ring-2 focus:outline-none sm:px-4 sm:py-2 sm:text-base ${
             selectedInnings === "1"
-              ? "bg-accent-secondary-light-800 dark:bg-accent-secondary-dark-800 text-secondary-light-100 dark:text-secondary-dark-100"
-              : "bg-secondary-light-200 dark:bg-secondary-dark-200 text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 hover:bg-accent-primary-light-100 dark:hover:bg-accent-primary-dark-100"
+              ? "bg-accent-secondary-light-600 dark:bg-accent-secondary-dark-800 text-secondary-light-800 dark:text-secondary-dark-100"
+              : "dark:bg-secondary-dark-200 text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 hover:bg-accent-primary-light-100 hover:text-secondary-light-950 dark:hover:bg-accent-primary-dark-100"
           }`}
           onClick={() => setSelectedInnings("1")}
         >
@@ -263,8 +230,8 @@ export default function ScoreCard({ matchId }: ScoreCardProps) {
         <button
           className={`focus:ring-accent-secondary-light-800 dark:focus:ring-accent-secondary-dark-800 rounded-2xl px-3 py-1.5 text-sm font-semibold shadow transition-all duration-150 focus:ring-2 focus:outline-none sm:px-4 sm:py-2 sm:text-base ${
             selectedInnings === "2"
-              ? "bg-accent-secondary-light-800 dark:bg-accent-secondary-dark-800 text-secondary-light-100 dark:text-secondary-dark-100"
-              : "bg-secondary-light-200 dark:bg-secondary-dark-200 text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 hover:bg-accent-primary-light-100 dark:hover:bg-accent-primary-dark-100"
+              ? "bg-accent-secondary-light-600 dark:bg-accent-secondary-dark-800 text-secondary-light-800 dark:text-secondary-dark-100"
+              : "dark:bg-secondary-dark-200 text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 hover:bg-accent-primary-light-100 hover:text-secondary-light-950 dark:hover:bg-accent-primary-dark-100"
           }`}
           onClick={() => setSelectedInnings("2")}
         >
@@ -276,7 +243,9 @@ export default function ScoreCard({ matchId }: ScoreCardProps) {
           {innings1Batting && <BattingCard battingCard={innings1Batting} />}
           {innings1Bowling && <BowlingCard bowlingCard={innings1Bowling} />}
           {innings1Extras && <ExtrasCard extras={innings1Extras} />}
-          {innings1Partnerships && <PartnershipCard partnerships={innings1Partnerships} />}
+          {innings1Partnerships && (
+            <PartnershipCard partnerships={innings1Partnerships} />
+          )}
         </>
       )}
       {selectedInnings === "2" && innings2.data?.Innings2 && (
@@ -284,7 +253,9 @@ export default function ScoreCard({ matchId }: ScoreCardProps) {
           {innings2Batting && <BattingCard battingCard={innings2Batting} />}
           {innings2Bowling && <BowlingCard bowlingCard={innings2Bowling} />}
           {innings2Extras && <ExtrasCard extras={innings2Extras} />}
-          {innings2Partnerships && <PartnershipCard partnerships={innings2Partnerships} />}
+          {innings2Partnerships && (
+            <PartnershipCard partnerships={innings2Partnerships} />
+          )}
         </>
       )}
     </div>

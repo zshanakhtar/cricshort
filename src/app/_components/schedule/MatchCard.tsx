@@ -2,15 +2,16 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useMemo } from "react";
+// import { useMemo } from "react";
 import type { Match } from "~/models/matches";
+import { api } from "~/trpc/react";
 
 interface MatchCardProps {
   match: Match;
   clickable?: boolean;
 }
 
-export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
+export function MatchCard({ match, clickable = false }: MatchCardProps) {
   const router = useRouter();
 
   const handleCardClick = () => {
@@ -38,19 +39,27 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
     return match.MatchTime ? `${match.MatchTime} IST` : "Upcoming";
   };
 
-  const homeTeamShortName = useMemo(() => {
-    if (!match.HomeTeamName) return "";
-    return match.HomeTeamName.split(" ")
-      .map((word) => word[0])
-      .join("");
-  }, [match.HomeTeamName]);
+  const [pointTable] = api.points.getPoints.useSuspenseQuery();
+  const homeTeamShortName = pointTable.find(
+    (team) => team.TeamName === match.HomeTeamName,
+  )?.TeamCode;
+  const awayTeamShortName = pointTable.find(
+    (team) => team.TeamName === match.AwayTeamName,
+  )?.TeamCode;
 
-  const awayTeamShortName = useMemo(() => {
-    if (!match.AwayTeamName) return "";
-    return match.AwayTeamName.split(" ")
-      .map((word) => word[0])
-      .join("");
-  }, [match.AwayTeamName]);
+  // const homeTeamShortName = useMemo(() => {
+  //   if (!match.HomeTeamName) return "";
+  //   return match.HomeTeamName.split(" ")
+  //     .map((word) => word[0])
+  //     .join("");
+  // }, [match.HomeTeamName]);
+
+  // const awayTeamShortName = useMemo(() => {
+  //   if (!match.AwayTeamName) return "";
+  //   return match.AwayTeamName.split(" ")
+  //     .map((word) => word[0])
+  //     .join("");
+  // }, [match.AwayTeamName]);
 
   return (
     <div
@@ -160,4 +169,4 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
       </div>
     </div>
   );
-};
+}

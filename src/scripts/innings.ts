@@ -115,10 +115,7 @@ async function upsertExtras(
   await db
     .delete(extras)
     .where(
-      and(
-        eq(extras.MatchID, String(matchId)),
-        eq(extras.InningsNo, inningsNo),
-      ),
+      and(eq(extras.MatchID, String(matchId)), eq(extras.InningsNo, inningsNo)),
     );
   for (const row of rows) await insertExtras(row);
 }

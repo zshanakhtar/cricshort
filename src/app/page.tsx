@@ -1,7 +1,7 @@
 import { api } from "~/trpc/server";
+import { PointsTable } from "./_components/points/PointsTable";
 import { MatchCard } from "./_components/schedule/MatchCard";
 import { MatchList } from "./_components/schedule/MatchList";
-import { PointsTable } from "./_components/points/PointsTable";
 
 export default async function SchedulePage() {
   const matches = await api.matches.getAllMatches();
@@ -21,7 +21,7 @@ export default async function SchedulePage() {
     );
   }
   return (
-    <div className="flex h-full w-full flex-col gap-6 justify-center">
+    <div className="flex h-full w-full flex-col justify-center gap-6">
       <PointsTable points={points} />
       <MatchList matches={matches} filter="upcoming" />
     </div>

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { type Matches, type Match } from "~/models/matches";
+import { type Match, type Matches } from "~/models/matches";
 import { MatchCard } from "./MatchCard";
 
 interface MatchListProps {

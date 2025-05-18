@@ -1,9 +1,9 @@
+import { eq } from "drizzle-orm";
 import { z } from "zod";
+import { matchesSchema } from "~/models/matches";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { db } from "~/server/db/index";
 import { matches } from "~/server/db/matches";
-import { eq } from "drizzle-orm";
-import { matchesSchema } from "~/models/matches";
 
 export const matchesRouter = createTRPCRouter({
   getMatchById: publicProcedure

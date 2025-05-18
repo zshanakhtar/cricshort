@@ -1,46 +1,45 @@
-type FilterType = "all" | "upcoming" | "completed";
+import Link from "next/link";
 
 interface FilterTabsProps {
-  currentFilter: FilterType;
-  onFilterChange: (filter: FilterType) => void;
+  currentFilter: string | null;
+  onFilterChange: (filter: string) => void;
 }
 
 export const FilterTabs = ({
   currentFilter,
-  onFilterChange,
 }: FilterTabsProps) => {
   return (
     <div className="flex flex-wrap gap-2">
-      <button
-        onClick={() => onFilterChange("all")}
+      <Link
+        href="/matches"
         className={`rounded-full px-4 py-2 text-sm transition-colors ${
           currentFilter === "all"
-            ? "bg-indigo-600 text-white"
-            : "bg-white text-gray-600 hover:bg-gray-50"
+            ? "bg-accent-primary-light-600 dark:bg-accent-primary-dark-600"
+            : "bg-transparent text-accent-primary-light-600 dark:text-accent-primary-dark-100 hover:bg-gray-50"
         }`}
       >
         All Matches
-      </button>
-      <button
-        onClick={() => onFilterChange("upcoming")}
+      </Link>
+      <Link
+        href="/matches/upcoming"
         className={`rounded-full px-4 py-2 text-sm transition-colors ${
           currentFilter === "upcoming"
-            ? "bg-indigo-600 text-white"
-            : "bg-white text-gray-600 hover:bg-gray-50"
+            ? "bg-accent-primary-light-600 dark:bg-accent-primary-dark-600"
+            : "bg-transparent text-accent-primary-light-600 dark:text-accent-primary-dark-100 hover:bg-gray-50"
         }`}
       >
         Upcoming
-      </button>
-      <button
-        onClick={() => onFilterChange("completed")}
+      </Link>
+      <Link
+        href="/matches/completed"
         className={`rounded-full px-4 py-2 text-sm transition-colors ${
           currentFilter === "completed"
-            ? "bg-indigo-600 text-white"
-            : "bg-white text-gray-600 hover:bg-gray-50"
+            ? "bg-accent-primary-light-600 dark:bg-accent-primary-dark-600"
+            : "bg-transparent text-accent-primary-light-600 dark:text-accent-primary-dark-100 hover:bg-gray-50"
         }`}
       >
         Completed
-      </button>
+      </Link>
     </div>
   );
 };

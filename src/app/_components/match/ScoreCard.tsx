@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { api } from "~/trpc/react";
-import { PartnershipCard } from "./PartnershipCard";
 import type {
   BattingCard as BattingCardType,
   BowlingCard as BowlingCardType,
   Extras,
   PartnershipScore,
 } from "~/models/innings";
+import { api } from "~/trpc/react";
+import { PartnershipCard } from "./PartnershipCard";
 
 const defaultLogo = "/favicon.ico";
 

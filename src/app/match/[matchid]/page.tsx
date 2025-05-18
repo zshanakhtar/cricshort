@@ -1,13 +1,12 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { useMemo, useState } from "react";
-import ScoreCard from "../../_components/match/ScoreCard";
 import { MatchCard } from "~/app/_components/schedule/MatchCard";
 import type { Match } from "~/models/matches";
 import { api } from "~/trpc/react";
-import { useParams } from "next/navigation";
+import ScoreCard from "../../_components/match/ScoreCard";
 
-// Type guard to check if unknown data matches Match schema
 function isValidMatch(data: unknown): data is Match {
   if (!data || typeof data !== "object") return false;
   const d = data as Record<string, unknown>;
@@ -21,14 +20,12 @@ function isValidMatch(data: unknown): data is Match {
 export default function MatchPage() {
   const [tab, setTab] = useState<"scorecard" | "commentary">("scorecard");
 
-  // Type-safe params handling
   const params = useParams();
   const matchid = useMemo(() => {
     if (!params || typeof params.matchid !== "string") return null;
     return params.matchid;
   }, [params]);
 
-  // Type-safe query with proper typing
   const matchQuery = api.matches.getMatchById.useQuery(
     { matchId: matchid ?? "" },
     {
@@ -37,7 +34,6 @@ export default function MatchPage() {
     },
   );
 
-  // Type-safe data conversion with validation
   const match = useMemo<Match | null>(() => {
     const data = matchQuery.data;
     if (!data) return null;
@@ -97,10 +93,8 @@ export default function MatchPage() {
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">Match Details</h1>
 
-      {/* Live Match Card */}
       <MatchCard match={match} />
 
-      {/* Match Details Tabs */}
       <div className="mt-4 rounded-2xl bg-gradient-to-br from-white to-gray-50 p-6 shadow-md">
         <div className="mb-4 flex gap-2">
           <button

@@ -1,4 +1,3 @@
-import React from "react";
 import type { PartnershipScore } from "~/models/innings";
 
 interface DisplayPartnership extends PartnershipScore {

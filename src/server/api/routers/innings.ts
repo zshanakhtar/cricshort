@@ -1,3 +1,5 @@
+import { and, eq } from "drizzle-orm";
+import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { db } from "~/server/db/index";
 import {
@@ -6,8 +8,6 @@ import {
   extras,
   partnershipScore,
 } from "~/server/db/innings";
-import { z } from "zod";
-import { eq, and } from "drizzle-orm";
 
 export const inningsRouter = createTRPCRouter({
   getInnings: publicProcedure

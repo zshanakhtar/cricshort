@@ -1,7 +1,7 @@
-import { db } from "../server/db/index";
-import { matches as matchesTable } from "../server/db/matches";
 import { eq } from "drizzle-orm";
 import { matchesSchema, matchSchema, type Match } from "../models/matches";
+import { db } from "../server/db/index";
+import { matches as matchesTable } from "../server/db/matches";
 import { unwrapJsonp } from "./utils/jsonp";
 
 const MATCHES_API_URL =
@@ -47,13 +47,13 @@ async function findExistingMatch(matchId: number): Promise<Match | null> {
 
 async function insertMatch(match: Match): Promise<void> {
   if (match.MatchID == null) return;
-  const normalized = (normalizeMatchForDb(match));
+  const normalized = normalizeMatchForDb(match);
   await db.insert(matchesTable).values([normalized]); // Wrap in array for bulk insert
 }
 
 async function updateMatch(matchId: number, updates: Match): Promise<void> {
   if (matchId == null) return;
-  const normalized = (normalizeMatchForDb(updates));
+  const normalized = normalizeMatchForDb(updates);
   await db
     .update(matchesTable)
     .set(normalized)

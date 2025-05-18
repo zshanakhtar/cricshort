@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { useMemo } from "react";
 import type { Match } from "~/models/matches";
 
 interface MatchCardProps {

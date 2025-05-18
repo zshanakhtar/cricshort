@@ -26,6 +26,6 @@
 //   (t) => [index("name_idx").on(t.name)],
 // );
 
-export * from "./matches";
 export * from "./innings";
+export * from "./matches";
 export * from "./points";

@@ -1,4 +1,4 @@
-import { index, foreignKey } from "drizzle-orm/sqlite-core";
+import { foreignKey, index } from "drizzle-orm/sqlite-core";
 import { matches } from "./matches";
 import { createTable } from "./tableCreator";
 

@@ -1,8 +1,8 @@
-import { db } from "../server/db/index";
-import { points as pointsTable } from "../server/db/points";
-import { matches } from "../server/db/matches";
-import { eq, and } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { pointsSchema, type PointEntry } from "../models/points";
+import { db } from "../server/db/index";
+import { matches } from "../server/db/matches";
+import { points as pointsTable } from "../server/db/points";
 
 const POINTS_API_URL =
   "https://ipl-stats-sports-mechanic.s3.ap-south-1.amazonaws.com/ipl/feeds/stats/203-groupstandings.js?ongroupstandings=_jqjsp&_1746742781756=";

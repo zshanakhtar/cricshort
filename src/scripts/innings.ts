@@ -1,3 +1,13 @@
+import { and, eq } from "drizzle-orm";
+import {
+  inningsSchema,
+  type BattingCard,
+  type BowlingCard,
+  type Extras as ExtrasType,
+  type Innings,
+  type PartnershipScore,
+} from "../models/innings";
+import { matchesSchema, type Matches } from "../models/matches";
 import { db } from "../server/db/index";
 import {
   battingCard,
@@ -5,19 +15,9 @@ import {
   extras,
   partnershipScore,
 } from "../server/db/innings";
-import { eq, and } from "drizzle-orm";
-import {
-  inningsSchema,
-  type Innings,
-  type BattingCard,
-  type BowlingCard,
-  type Extras as ExtrasType,
-  type PartnershipScore,
-} from "../models/innings";
-import { matchesSchema, type Match, type Matches } from "../models/matches";
 import { matches } from "../server/db/matches";
-import { unwrapJsonp } from "./utils/jsonp";
 import { INNINGS1_URL, INNINGS2_URL } from "./constants/urls";
+import { unwrapJsonp } from "./utils/jsonp";
 
 async function fetchInningsFromApi(
   matchId: string,

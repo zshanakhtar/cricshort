@@ -1,15 +1,15 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Image from "next/image";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between bg-primary-light-900 dark:bg-primary-dark-900 px-4 py-3 shadow-md">
+    <header className="bg-primary-light-900 dark:bg-primary-dark-900 sticky top-0 z-50 flex items-center justify-between px-4 py-3 shadow-md">
       <Link
         href="/"
-        className="flex flex-row items-center gap-2 text-xl font-bold tracking-wide text-secondary-light-50 dark:text-secondary-dark-50"
+        className="text-secondary-light-50 dark:text-secondary-dark-50 flex flex-row items-center gap-2 text-xl font-bold tracking-wide"
         onClick={() => setOpen(false)}
       >
         <Image
@@ -17,7 +17,7 @@ export function Header() {
           alt="Logo"
           width={40}
           height={40}
-          className="ml-2 inline-block h-8 w-8 rounded-full bg-secondary-light-50 dark:text-secondary-dark-50 shadow"
+          className="bg-secondary-light-50 dark:text-secondary-dark-50 ml-2 inline-block h-8 w-8 rounded-full shadow"
         />
         <span>CricShort</span>
       </Link>

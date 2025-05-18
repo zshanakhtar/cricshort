@@ -2,12 +2,9 @@ import Link from "next/link";
 
 interface FilterTabsProps {
   currentFilter: string | null;
-  onFilterChange: (filter: string) => void;
 }
 
-export const FilterTabs = ({
-  currentFilter,
-}: FilterTabsProps) => {
+export const FilterTabs = ({ currentFilter }: FilterTabsProps) => {
   return (
     <div className="flex flex-wrap gap-2">
       <Link
@@ -15,7 +12,7 @@ export const FilterTabs = ({
         className={`rounded-full px-4 py-2 text-sm transition-colors ${
           currentFilter === "all"
             ? "bg-accent-primary-light-600 dark:bg-accent-primary-dark-600"
-            : "bg-transparent text-accent-primary-light-600 dark:text-accent-primary-dark-100 hover:bg-gray-50"
+            : "text-accent-primary-light-600 dark:text-accent-primary-dark-100 bg-transparent hover:bg-gray-50"
         }`}
       >
         All Matches
@@ -25,7 +22,7 @@ export const FilterTabs = ({
         className={`rounded-full px-4 py-2 text-sm transition-colors ${
           currentFilter === "upcoming"
             ? "bg-accent-primary-light-600 dark:bg-accent-primary-dark-600"
-            : "bg-transparent text-accent-primary-light-600 dark:text-accent-primary-dark-100 hover:bg-gray-50"
+            : "text-accent-primary-light-600 dark:text-accent-primary-dark-100 bg-transparent hover:bg-gray-50"
         }`}
       >
         Upcoming
@@ -35,7 +32,7 @@ export const FilterTabs = ({
         className={`rounded-full px-4 py-2 text-sm transition-colors ${
           currentFilter === "completed"
             ? "bg-accent-primary-light-600 dark:bg-accent-primary-dark-600"
-            : "bg-transparent text-accent-primary-light-600 dark:text-accent-primary-dark-100 hover:bg-gray-50"
+            : "text-accent-primary-light-600 dark:text-accent-primary-dark-100 bg-transparent hover:bg-gray-50"
         }`}
       >
         Completed

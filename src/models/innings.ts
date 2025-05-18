@@ -7,7 +7,7 @@ export const battingCardSchema = z.object({
   PlayerID: z.string(),
   PlayerName: z.string(),
   PlayerImage: z.string(),
-  PlayingOrder: z.number().or(z.string()).nullable().optional(),
+  PlayingOrder: z.number().nullable().optional(),
   MatchPlayingOrder: z.number(),
   BowlerName: z.string(),
   OutDesc: z.string(),
@@ -89,6 +89,25 @@ export const extrasSchema = z.object({
   MaxPartnerShipRuns: z.number(),
 });
 
+// {
+//         "MatchID": 1855,
+//         "BattingTeamID": 13,
+//         "InningsNo": 2,
+//         "StrikerID": "2024-100mb00000003497-dc521b85a24811",
+//         "Striker": "Ayush Mhatre",
+//         "NonStrikerID": "2021-100mb00000000601-517399b0ceaf11",
+//         "PartnershipTotal": 0,
+//         "StrikerRuns": 0,
+//         "StrikerBalls": 2,
+//         "Extras": 0,
+//         "NonStrikerRuns": 0,
+//         "NonStrikerBalls": 0,
+//         "MatchMaxOver": 0.2,
+//         "MatchMinOver": 0.1,
+//         "NonStriker": "Devon Conway",
+//         "@I := 0": "0",
+//         "RowNumber": 1
+//       },
 export const partnershipScoreSchema = z.object({
   MatchID: z.number(),
   BattingTeamID: z.number(),

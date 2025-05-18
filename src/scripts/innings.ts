@@ -31,20 +31,10 @@ async function fetchInningsFromApi(
   return inningsSchema.parse(parsed);
 }
 
-function normalizeBattingCard(card: BattingCard): Record<string, unknown> {
-  return {
-    ...card,
-    PLAYER_ID: String(card.PLAYER_ID),
-  };
-}
-
 function normalizeExtras(row: ExtrasType): Record<string, unknown> {
   return {
     ...row,
-    MatchID: String(row.MatchID),
     InningsNo: String(row.InningsNo),
-    TeamID: String(row.TeamID),
-    FallWickets: String(row.FallWickets),
     MaxPartnerShipRuns: String(row.MaxPartnerShipRuns),
   };
 }
@@ -74,7 +64,7 @@ function getInnings(data: Innings, inningsNo: "1" | "2") {
 }
 
 async function insertBattingCard(row: BattingCard) {
-  return db.insert(battingCard).values(normalizeBattingCard(row));
+  return db.insert(battingCard).values(row);
 }
 async function insertBowlingCard(row: BowlingCard) {
   return db.insert(bowlingCard).values(row);
@@ -116,6 +106,7 @@ async function upsertBowlingCards(
     );
   for (const card of cards) await insertBowlingCard(card);
 }
+
 async function upsertExtras(
   matchId: number,
   inningsNo: number,
@@ -126,7 +117,7 @@ async function upsertExtras(
     .where(
       and(
         eq(extras.MatchID, String(matchId)),
-        eq(extras.InningsNo, String(inningsNo)),
+        eq(extras.InningsNo, inningsNo),
       ),
     );
   for (const row of rows) await insertExtras(row);
@@ -140,8 +131,8 @@ async function upsertPartnershipScores(
     .delete(partnershipScore)
     .where(
       and(
-        eq(partnershipScore.MatchID, String(matchId)),
-        eq(partnershipScore.InningsNo, String(inningsNo)),
+        eq(partnershipScore.MatchID, matchId),
+        eq(partnershipScore.InningsNo, inningsNo),
       ),
     );
   for (const row of rows) await insertPartnershipScore(row);

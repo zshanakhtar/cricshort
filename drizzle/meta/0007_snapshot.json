@@ -1,0 +1,2193 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "d712dee4-b8e2-46f6-8a8c-1db79b351d6b",
+  "prevId": "4b52fc5a-a455-4db9-91a3-f8af1d4d4eac",
+  "tables": {
+    "cricshort_batting_card": {
+      "name": "cricshort_batting_card",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "MatchID": {
+          "name": "MatchID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "InningsNo": {
+          "name": "InningsNo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TeamID": {
+          "name": "TeamID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PlayerID": {
+          "name": "PlayerID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PlayerName": {
+          "name": "PlayerName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PlayerImage": {
+          "name": "PlayerImage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PlayingOrder": {
+          "name": "PlayingOrder",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchPlayingOrder": {
+          "name": "MatchPlayingOrder",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BowlerName": {
+          "name": "BowlerName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "OutDesc": {
+          "name": "OutDesc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ShortOutDesc": {
+          "name": "ShortOutDesc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Runs": {
+          "name": "Runs",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Balls": {
+          "name": "Balls",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DotBalls": {
+          "name": "DotBalls",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DotBallPercentage": {
+          "name": "DotBallPercentage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DotBallFrequency": {
+          "name": "DotBallFrequency",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Ones": {
+          "name": "Ones",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Twos": {
+          "name": "Twos",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Threes": {
+          "name": "Threes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Fours": {
+          "name": "Fours",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Sixes": {
+          "name": "Sixes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BoundaryPercentage": {
+          "name": "BoundaryPercentage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BoundaryFrequency": {
+          "name": "BoundaryFrequency",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "StrikeRate": {
+          "name": "StrikeRate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MinOver": {
+          "name": "MinOver",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MinStrikerOver": {
+          "name": "MinStrikerOver",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "WicketNo": {
+          "name": "WicketNo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AgainstFast": {
+          "name": "AgainstFast",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AgainstSpin": {
+          "name": "AgainstSpin",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AgainstFastPercent": {
+          "name": "AgainstFastPercent",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AgainstSpinPercent": {
+          "name": "AgainstSpinPercent",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PLAYER_ID": {
+          "name": "PLAYER_ID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "batting_match_innings_team": {
+          "name": "batting_match_innings_team",
+          "columns": [
+            "MatchID",
+            "InningsNo",
+            "TeamID"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "cricshort_batting_card_MatchID_cricshort_matches_MatchID_fk": {
+          "name": "cricshort_batting_card_MatchID_cricshort_matches_MatchID_fk",
+          "tableFrom": "cricshort_batting_card",
+          "tableTo": "cricshort_matches",
+          "columnsFrom": [
+            "MatchID"
+          ],
+          "columnsTo": [
+            "MatchID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "cricshort_bowling_card": {
+      "name": "cricshort_bowling_card",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "MatchID": {
+          "name": "MatchID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "InningsNo": {
+          "name": "InningsNo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TeamID": {
+          "name": "TeamID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PlayerID": {
+          "name": "PlayerID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PlayerName": {
+          "name": "PlayerName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PlayerShortName": {
+          "name": "PlayerShortName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PlayerImageName": {
+          "name": "PlayerImageName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PlayerImage": {
+          "name": "PlayerImage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Overs": {
+          "name": "Overs",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Maidens": {
+          "name": "Maidens",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Runs": {
+          "name": "Runs",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Wickets": {
+          "name": "Wickets",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Wides": {
+          "name": "Wides",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NoBalls": {
+          "name": "NoBalls",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Economy": {
+          "name": "Economy",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BowlingOrder": {
+          "name": "BowlingOrder",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TotalLegalBallsBowled": {
+          "name": "TotalLegalBallsBowled",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ScoringBalls": {
+          "name": "ScoringBalls",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DotBalls": {
+          "name": "DotBalls",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DBPercent": {
+          "name": "DBPercent",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DBFrequency": {
+          "name": "DBFrequency",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Ones": {
+          "name": "Ones",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Twos": {
+          "name": "Twos",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Threes": {
+          "name": "Threes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Fours": {
+          "name": "Fours",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Sixes": {
+          "name": "Sixes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BdryPercent": {
+          "name": "BdryPercent",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BdryFreq": {
+          "name": "BdryFreq",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "StrikeRate": {
+          "name": "StrikeRate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "FourPercent": {
+          "name": "FourPercent",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "SixPercent": {
+          "name": "SixPercent",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "bowling_match_innings_team": {
+          "name": "bowling_match_innings_team",
+          "columns": [
+            "MatchID",
+            "InningsNo",
+            "TeamID"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "cricshort_bowling_card_MatchID_cricshort_matches_MatchID_fk": {
+          "name": "cricshort_bowling_card_MatchID_cricshort_matches_MatchID_fk",
+          "tableFrom": "cricshort_bowling_card",
+          "tableTo": "cricshort_matches",
+          "columnsFrom": [
+            "MatchID"
+          ],
+          "columnsTo": [
+            "MatchID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "cricshort_extras": {
+      "name": "cricshort_extras",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "MatchID": {
+          "name": "MatchID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "InningsNo": {
+          "name": "InningsNo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TeamID": {
+          "name": "TeamID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Total": {
+          "name": "Total",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TotalExtras": {
+          "name": "TotalExtras",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Byes": {
+          "name": "Byes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "LegByes": {
+          "name": "LegByes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NoBalls": {
+          "name": "NoBalls",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Wides": {
+          "name": "Wides",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Penalty": {
+          "name": "Penalty",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CurrentRunRate": {
+          "name": "CurrentRunRate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "FallScore": {
+          "name": "FallScore",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "FallWickets": {
+          "name": "FallWickets",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "FallOvers": {
+          "name": "FallOvers",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BattingTeamName": {
+          "name": "BattingTeamName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BowlingTeamName": {
+          "name": "BowlingTeamName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MaxPartnerShipRuns": {
+          "name": "MaxPartnerShipRuns",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "extras_match_innings_team": {
+          "name": "extras_match_innings_team",
+          "columns": [
+            "MatchID",
+            "InningsNo",
+            "TeamID"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "cricshort_extras_MatchID_cricshort_matches_MatchID_fk": {
+          "name": "cricshort_extras_MatchID_cricshort_matches_MatchID_fk",
+          "tableFrom": "cricshort_extras",
+          "tableTo": "cricshort_matches",
+          "columnsFrom": [
+            "MatchID"
+          ],
+          "columnsTo": [
+            "MatchID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "cricshort_partnership_score": {
+      "name": "cricshort_partnership_score",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "MatchID": {
+          "name": "MatchID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BattingTeamID": {
+          "name": "BattingTeamID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "InningsNo": {
+          "name": "InningsNo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "StrikerID": {
+          "name": "StrikerID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Striker": {
+          "name": "Striker",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NonStrikerID": {
+          "name": "NonStrikerID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NonStriker": {
+          "name": "NonStriker",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PartnershipTotal": {
+          "name": "PartnershipTotal",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "StrikerRuns": {
+          "name": "StrikerRuns",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "StrikerBalls": {
+          "name": "StrikerBalls",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Extras": {
+          "name": "Extras",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NonStrikerRuns": {
+          "name": "NonStrikerRuns",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NonStrikerBalls": {
+          "name": "NonStrikerBalls",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchMaxOver": {
+          "name": "MatchMaxOver",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchMinOver": {
+          "name": "MatchMinOver",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "RowNumber": {
+          "name": "RowNumber",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "partnership_match_innings_team": {
+          "name": "partnership_match_innings_team",
+          "columns": [
+            "MatchID",
+            "InningsNo",
+            "BattingTeamID"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "cricshort_partnership_score_MatchID_cricshort_matches_MatchID_fk": {
+          "name": "cricshort_partnership_score_MatchID_cricshort_matches_MatchID_fk",
+          "tableFrom": "cricshort_partnership_score",
+          "tableTo": "cricshort_matches",
+          "columnsFrom": [
+            "MatchID"
+          ],
+          "columnsTo": [
+            "MatchID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "cricshort_matches": {
+      "name": "cricshort_matches",
+      "columns": {
+        "MatchID": {
+          "name": "MatchID",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CompetitionID": {
+          "name": "CompetitionID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchTypeID": {
+          "name": "MatchTypeID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchType": {
+          "name": "MatchType",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchStatus": {
+          "name": "MatchStatus",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchDate": {
+          "name": "MatchDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchDateNew": {
+          "name": "MatchDateNew",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchName": {
+          "name": "MatchName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchTime": {
+          "name": "MatchTime",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GMTMatchTime": {
+          "name": "GMTMatchTime",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GMTMatchDate": {
+          "name": "GMTMatchDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GMTMatchEndTime": {
+          "name": "GMTMatchEndTime",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GMTMatchEndDate": {
+          "name": "GMTMatchEndDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "FirstBattingTeamID": {
+          "name": "FirstBattingTeamID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "FirstBattingTeamName": {
+          "name": "FirstBattingTeamName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "SecondBattingTeamID": {
+          "name": "SecondBattingTeamID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "SecondBattingTeamName": {
+          "name": "SecondBattingTeamName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "FirstBattingTeamCode": {
+          "name": "FirstBattingTeamCode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "SecondBattingTeamCode": {
+          "name": "SecondBattingTeamCode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GroundID": {
+          "name": "GroundID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GroundName": {
+          "name": "GroundName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Commentss": {
+          "name": "Commentss",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TossTeam": {
+          "name": "TossTeam",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TossDetails": {
+          "name": "TossDetails",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TossText": {
+          "name": "TossText",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Flag": {
+          "name": "Flag",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "FirstBattingSummary": {
+          "name": "FirstBattingSummary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "SecondBattingSummary": {
+          "name": "SecondBattingSummary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ClientMatchID": {
+          "name": "ClientMatchID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MATCH_COMMENCE_START_DATE": {
+          "name": "MATCH_COMMENCE_START_DATE",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "city": {
+          "name": "city",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "FlickrAlbumID": {
+          "name": "FlickrAlbumID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "LiveStream": {
+          "name": "LiveStream",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "FBURL": {
+          "name": "FBURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "T20ProMatchID": {
+          "name": "T20ProMatchID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Temperature": {
+          "name": "Temperature",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "WeatherIcon": {
+          "name": "WeatherIcon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TempUpdatedDate": {
+          "name": "TempUpdatedDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GroundUmpire1ID": {
+          "name": "GroundUmpire1ID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GroundUmpire2ID": {
+          "name": "GroundUmpire2ID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GroundUmpire3ID": {
+          "name": "GroundUmpire3ID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "RefereeID": {
+          "name": "RefereeID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "HomeTeamID": {
+          "name": "HomeTeamID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "HomeTeamName": {
+          "name": "HomeTeamName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "HomeTeamColor1": {
+          "name": "HomeTeamColor1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "HomeTeamColor2": {
+          "name": "HomeTeamColor2",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AwayTeamColor1": {
+          "name": "AwayTeamColor1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AwayTeamColor2": {
+          "name": "AwayTeamColor2",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AwayTeamID": {
+          "name": "AwayTeamID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AwayTeamName": {
+          "name": "AwayTeamName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "timezone1": {
+          "name": "timezone1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchEndDate": {
+          "name": "MatchEndDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchEndTime": {
+          "name": "MatchEndTime",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MATCH_NO_OF_OVERS": {
+          "name": "MATCH_NO_OF_OVERS",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ROUND_ID": {
+          "name": "ROUND_ID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchTypeName": {
+          "name": "MatchTypeName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "RowNo": {
+          "name": "RowNo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TeamType": {
+          "name": "TeamType",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CompetitionName": {
+          "name": "CompetitionName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GroundUmpire1": {
+          "name": "GroundUmpire1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GroundUmpire2": {
+          "name": "GroundUmpire2",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ThirdUmpire": {
+          "name": "ThirdUmpire",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Comments": {
+          "name": "Comments",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "HomeTeamLogo": {
+          "name": "HomeTeamLogo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AwayTeamLogo": {
+          "name": "AwayTeamLogo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchHomeTeamLogo": {
+          "name": "MatchHomeTeamLogo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchAwayTeamLogo": {
+          "name": "MatchAwayTeamLogo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "VideoScorecard": {
+          "name": "VideoScorecard",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TimeZone": {
+          "name": "TimeZone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CurrentStrikerID": {
+          "name": "CurrentStrikerID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CurrentStrikerName": {
+          "name": "CurrentStrikerName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "StrikerRuns": {
+          "name": "StrikerRuns",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "StrikerBalls": {
+          "name": "StrikerBalls",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "StrikerFours": {
+          "name": "StrikerFours",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "StrikerSixes": {
+          "name": "StrikerSixes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "StrikerSR": {
+          "name": "StrikerSR",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "StrikerImage": {
+          "name": "StrikerImage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CurrentNonStrikerID": {
+          "name": "CurrentNonStrikerID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CurrentNonStrikerName": {
+          "name": "CurrentNonStrikerName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NonStrikerRuns": {
+          "name": "NonStrikerRuns",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NonStrikerBalls": {
+          "name": "NonStrikerBalls",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NonStrikerFours": {
+          "name": "NonStrikerFours",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NonStrikerSixes": {
+          "name": "NonStrikerSixes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NonStrikerSR": {
+          "name": "NonStrikerSR",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NonStrikerImage": {
+          "name": "NonStrikerImage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CurrentBowlerID": {
+          "name": "CurrentBowlerID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CurrentBowlerName": {
+          "name": "CurrentBowlerName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BowlerOvers": {
+          "name": "BowlerOvers",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BowlerRuns": {
+          "name": "BowlerRuns",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BowlerMaidens": {
+          "name": "BowlerMaidens",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BowlerWickets": {
+          "name": "BowlerWickets",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BowlerEconomy": {
+          "name": "BowlerEconomy",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BowlerSR": {
+          "name": "BowlerSR",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BowlerImage": {
+          "name": "BowlerImage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ChasingText": {
+          "name": "ChasingText",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchBreakComments": {
+          "name": "MatchBreakComments",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchProgress": {
+          "name": "MatchProgress",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CurrentInnings": {
+          "name": "CurrentInnings",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "1Summary": {
+          "name": "1Summary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "1FallScore": {
+          "name": "1FallScore",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "1FallWickets": {
+          "name": "1FallWickets",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "1FallOvers": {
+          "name": "1FallOvers",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "1RunRate": {
+          "name": "1RunRate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "2Summary": {
+          "name": "2Summary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "2FallScore": {
+          "name": "2FallScore",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "2FallWickets": {
+          "name": "2FallWickets",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "2FallOvers": {
+          "name": "2FallOvers",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "2RunRate": {
+          "name": "2RunRate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "3Summary": {
+          "name": "3Summary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "3FallScore": {
+          "name": "3FallScore",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "3FallWickets": {
+          "name": "3FallWickets",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "3FallOvers": {
+          "name": "3FallOvers",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "3RunRate": {
+          "name": "3RunRate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "4Summary": {
+          "name": "4Summary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "4FallScore": {
+          "name": "4FallScore",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "4FallWickets": {
+          "name": "4FallWickets",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "4FallOvers": {
+          "name": "4FallOvers",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "4RunRate": {
+          "name": "4RunRate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "5Summary": {
+          "name": "5Summary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "5FallScore": {
+          "name": "5FallScore",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "5FallWickets": {
+          "name": "5FallWickets",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "5FallOvers": {
+          "name": "5FallOvers",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "5RunRate": {
+          "name": "5RunRate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "6Summary": {
+          "name": "6Summary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "6FallScore": {
+          "name": "6FallScore",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "6FallWickets": {
+          "name": "6FallWickets",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "6FallOvers": {
+          "name": "6FallOvers",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "6RunRate": {
+          "name": "6RunRate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DivisionID": {
+          "name": "DivisionID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "SecondInningsFirstBattingID": {
+          "name": "SecondInningsFirstBattingID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "SecondInningsFirstBattingName": {
+          "name": "SecondInningsFirstBattingName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "SecondInningsSecondBattingID": {
+          "name": "SecondInningsSecondBattingID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "SecondInningsSecondBattingName": {
+          "name": "SecondInningsSecondBattingName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ThirdInningsFirstBattingID": {
+          "name": "ThirdInningsFirstBattingID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ThirdInningsFirstBattingName": {
+          "name": "ThirdInningsFirstBattingName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ThirdInningsSecondBattingID": {
+          "name": "ThirdInningsSecondBattingID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ThirdInningsSecondBattingName": {
+          "name": "ThirdInningsSecondBattingName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "WinningTeamID": {
+          "name": "WinningTeamID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchOrder": {
+          "name": "MatchOrder",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "RevisedOver": {
+          "name": "RevisedOver",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "RevisedTarget": {
+          "name": "RevisedTarget",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PreMatchCommentary": {
+          "name": "PreMatchCommentary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PostMatchCommentary": {
+          "name": "PostMatchCommentary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MatchRow": {
+          "name": "MatchRow",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ProjectedScore": {
+          "name": "ProjectedScore",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "2ndProjectedScore": {
+          "name": "2ndProjectedScore",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "3rdProjectedScore": {
+          "name": "3rdProjectedScore",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MOM": {
+          "name": "MOM",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MOM_TYPE": {
+          "name": "MOM_TYPE",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MOMPlayerId": {
+          "name": "MOMPlayerId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MOMRuns": {
+          "name": "MOMRuns",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MOMBalls": {
+          "name": "MOMBalls",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MOMWicket": {
+          "name": "MOMWicket",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MOMRC": {
+          "name": "MOMRC",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MOMImage": {
+          "name": "MOMImage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "KO": {
+          "name": "KO",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "MatchID_idx": {
+          "name": "MatchID_idx",
+          "columns": [
+            "MatchID"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "cricshort_points": {
+      "name": "cricshort_points",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "StandingFlag": {
+          "name": "StandingFlag",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Category": {
+          "name": "Category",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CompetitionID": {
+          "name": "CompetitionID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TeamID": {
+          "name": "TeamID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TeamCode": {
+          "name": "TeamCode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TeamName": {
+          "name": "TeamName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TeamLogo": {
+          "name": "TeamLogo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Matches": {
+          "name": "Matches",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Wins": {
+          "name": "Wins",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Loss": {
+          "name": "Loss",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Tied": {
+          "name": "Tied",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NoResult": {
+          "name": "NoResult",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Points": {
+          "name": "Points",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Draw": {
+          "name": "Draw",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ForTeams": {
+          "name": "ForTeams",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AgainstTeam": {
+          "name": "AgainstTeam",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NetRunRate": {
+          "name": "NetRunRate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Quotient": {
+          "name": "Quotient",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "OrderNo": {
+          "name": "OrderNo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "IsQualified": {
+          "name": "IsQualified",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "LeadBy": {
+          "name": "LeadBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Deficit": {
+          "name": "Deficit",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Performance": {
+          "name": "Performance",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Status": {
+          "name": "Status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MATCH_ID": {
+          "name": "MATCH_ID",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PrevPosition": {
+          "name": "PrevPosition",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "points_competition_team": {
+          "name": "points_competition_team",
+          "columns": [
+            "CompetitionID",
+            "TeamID"
+          ],
+          "isUnique": false
+        },
+        "points_match": {
+          "name": "points_match",
+          "columns": [
+            "MATCH_ID"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "fk_points_match_id": {
+          "name": "fk_points_match_id",
+          "tableFrom": "cricshort_points",
+          "tableTo": "cricshort_matches",
+          "columnsFrom": [
+            "MATCH_ID"
+          ],
+          "columnsTo": [
+            "MatchID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

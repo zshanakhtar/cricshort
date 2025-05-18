@@ -37,7 +37,7 @@ export const battingCard = createTable(
     AgainstSpin: d.integer({ mode: "number" }),
     AgainstFastPercent: d.text(),
     AgainstSpinPercent: d.text(),
-    PLAYER_ID: d.text(),
+    PLAYER_ID: d.integer({ mode: "number" }),
   }),
   (t) => [
     index("batting_match_innings_team").on(t.MatchID, t.InningsNo, t.TeamID),
@@ -121,12 +121,32 @@ export const bowlingCard = createTable(
   ],
 );
 
+// {
+//         "MatchID": "1855",
+//         "InningsNo": 2,
+//         "TeamID": "13",
+//         "Total": "183\/8 (19.4 Overs)",
+//         "TotalExtras": "5",
+//         "Byes": "0",
+//         "LegByes": "1",
+//         "NoBalls": "0",
+//         "Wides": "4",
+//         "Penalty": "",
+//         "CurrentRunRate": "9.31",
+//         "FallScore": "183",
+//         "FallWickets": "8",
+//         "FallOvers": "19.4",
+//         "BattingTeamName": "Chennai Super Kings",
+//         "BowlingTeamName": "Kolkata Knight Riders",
+//         "MaxPartnerShipRuns": 67
+//       }
+
 export const extras = createTable(
   "extras",
   (d) => ({
     id: d.integer({ mode: "number" }).primaryKey({ autoIncrement: true }),
     MatchID: d.text(),
-    InningsNo: d.text(),
+    InningsNo: d.integer({ mode: "number" }),
     TeamID: d.text(),
     Total: d.text(),
     TotalExtras: d.text(),
@@ -141,7 +161,7 @@ export const extras = createTable(
     FallOvers: d.text(),
     BattingTeamName: d.text(),
     BowlingTeamName: d.text(),
-    MaxPartnerShipRuns: d.text(),
+    MaxPartnerShipRuns: d.integer({ mode: "number" }),
   }),
   (t) => [
     index("extras_match_innings_team").on(t.MatchID, t.InningsNo, t.TeamID),
@@ -149,26 +169,46 @@ export const extras = createTable(
   ],
 );
 
+// {
+//         "MatchID": 1855,
+//         "BattingTeamID": 13,
+//         "InningsNo": 2,
+//         "StrikerID": "2024-100mb00000003497-dc521b85a24811",
+//         "Striker": "Ayush Mhatre",
+//         "NonStrikerID": "2021-100mb00000000601-517399b0ceaf11",
+//         "PartnershipTotal": 0,
+//         "StrikerRuns": 0,
+//         "StrikerBalls": 2,
+//         "Extras": 0,
+//         "NonStrikerRuns": 0,
+//         "NonStrikerBalls": 0,
+//         "MatchMaxOver": 0.2,
+//         "MatchMinOver": 0.1,
+//         "NonStriker": "Devon Conway",
+//         "@I := 0": "0",
+//         "RowNumber": 1
+//       },
+
 export const partnershipScore = createTable(
   "partnership_score",
   (d) => ({
     id: d.integer({ mode: "number" }).primaryKey({ autoIncrement: true }),
-    MatchID: d.text(),
-    BattingTeamID: d.text(),
-    InningsNo: d.text(),
+    MatchID: d.integer({ mode: "number" }),
+    BattingTeamID: d.integer({ mode: "number" }),
+    InningsNo: d.integer({ mode: "number" }),
     StrikerID: d.text(),
     Striker: d.text(),
     NonStrikerID: d.text(),
     NonStriker: d.text(),
-    PartnershipTotal: d.text(),
-    StrikerRuns: d.text(),
-    StrikerBalls: d.text(),
-    Extras: d.text(),
-    NonStrikerRuns: d.text(),
-    NonStrikerBalls: d.text(),
-    MatchMaxOver: d.text(),
-    MatchMinOver: d.text(),
-    RowNumber: d.text(),
+    PartnershipTotal: d.integer({ mode: "number" }),
+    StrikerRuns: d.integer({ mode: "number" }),
+    StrikerBalls: d.integer({ mode: "number" }),
+    Extras: d.integer({ mode: "number" }),
+    NonStrikerRuns: d.integer({ mode: "number" }),
+    NonStrikerBalls: d.integer({ mode: "number" }),
+    MatchMaxOver: d.integer({ mode: "number" }),
+    MatchMinOver: d.integer({ mode: "number" }),
+    RowNumber: d.integer({ mode: "number" }),
   }),
   (t) => [
     index("partnership_match_innings_team").on(

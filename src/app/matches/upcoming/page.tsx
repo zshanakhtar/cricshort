@@ -9,7 +9,7 @@ export default function OngoingSchedulePage() {
 
   return (
     <>
-      <FilterTabs currentFilter="upcoming" onFilterChange={() => {}} />
+      <FilterTabs currentFilter="upcoming" />
       <MatchList matches={matches} filter="upcoming" />
     </>
   );

@@ -22,10 +22,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geist.variable}`}>
-      <body className="min-h-screen bg-gray-100">
+      <body className="flex min-h-screen flex-col bg-gray-100">
         <TRPCReactProvider>
           <Header />
-          <main className="container mx-auto p-4">{children}</main>
+          <main className="container mx-auto max-h-full flex-1 overflow-scroll p-4">
+            {children}
+          </main>
         </TRPCReactProvider>
       </body>
     </html>

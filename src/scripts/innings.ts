@@ -1,5 +1,4 @@
 import { db } from "../server/db/index";
-// Remove unused BaseSQLiteDatabase import
 import {
   battingCard,
   bowlingCard,
@@ -15,66 +14,27 @@ import {
   type Extras as ExtrasType,
   type PartnershipScore,
 } from "../models/innings";
-import type { Match } from "../models/matches";
+import { matchesSchema, type Match, type Matches } from "../models/matches";
+import { matches } from "../server/db/matches";
+import { unwrapJsonp } from "./utils/jsonp";
+import { INNINGS1_URL, INNINGS2_URL } from "./constants/urls";
 
-// Helper to fetch innings data from API
 async function fetchInningsFromApi(
   matchId: string,
   innings: "1" | "2",
 ): Promise<Innings> {
-  const url =
-    innings === "1"
-      ? `https://ipl-stats-sports-mechanic.s3.ap-south-1.amazonaws.com/ipl/feeds/${matchId}-Innings1.js?onScoring=_jqjsp&_1746730532635=`
-      : `https://ipl-stats-sports-mechanic.s3.ap-south-1.amazonaws.com/ipl/feeds/${matchId}-Innings2.js?callback=onScoring&_=1746729843775`;
-  const response = await fetch(url, {
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0",
-      Accept: "*/*",
-      "Accept-Language": "en-GB,en;q=0.5",
-      "Accept-Encoding": "gzip, deflate, br, zstd",
-      DNT: "1",
-      Connection: "keep-alive",
-      Referer: "https://www.iplt20.com/",
-      "Sec-Fetch-Dest": "script",
-      "Sec-Fetch-Mode": "no-cors",
-      "Sec-Fetch-Site": "cross-site",
-    },
-  });
+  const url = innings === "1" ? INNINGS1_URL(matchId) : INNINGS2_URL(matchId);
+  const response = await fetch(url);
   if (!response.ok) throw new Error("Failed to fetch innings data");
   const text = await response.text();
-  // Remove 'onScoring(' from start and last two chars from end
-  const jsonStr = text.substring(10, text.length - 2);
-  // Type-safe JSON parsing
-  const parsed = JSON.parse(jsonStr) as unknown;
+  const parsed = unwrapJsonp(text) as unknown;
   return inningsSchema.parse(parsed);
-}
-
-function filterUndefined<T extends object>(obj: T): T {
-  return Object.fromEntries(
-    Object.entries(obj).filter(([_, v]) => v !== undefined),
-  ) as T;
 }
 
 function normalizeBattingCard(card: BattingCard): Record<string, unknown> {
   return {
     ...card,
-    MatchID: Number(card.MatchID),
-    InningsNo: Number(card.InningsNo),
-    TeamID: Number(card.TeamID),
     PLAYER_ID: String(card.PLAYER_ID),
-  };
-}
-
-function normalizeBowlingCard(card: BowlingCard): Record<string, unknown> {
-  return {
-    ...card,
-    MatchID: Number(card.MatchID),
-    InningsNo: Number(card.InningsNo),
-    TeamID: Number(card.TeamID),
-    Overs: String(card.Overs),
-    Economy: String(card.Economy),
-    StrikeRate: String(card.StrikeRate),
   };
 }
 
@@ -109,82 +69,23 @@ function normalizePartnershipScore(
   };
 }
 
-function normalizeInnings(
-  inn: Innings["Innings1"] | Innings["Innings2"] | undefined,
-): Innings["Innings1"] | Innings["Innings2"] | undefined {
-  if (!inn) return undefined;
-
-  const normalized = {
-    BattingCard:
-      inn.BattingCard?.map((card) => ({
-        ...card, // Preserve all original properties
-        MatchID: Number(card.MatchID),
-        InningsNo: Number(card.InningsNo),
-        TeamID: Number(card.TeamID),
-        PLAYER_ID: String(card.PLAYER_ID),
-      })) ?? [],
-    BowlingCard: inn.BowlingCard?.map((card) => ({
-      ...card, // Preserve all original properties
-      MatchID: Number(card.MatchID),
-      InningsNo: Number(card.InningsNo),
-      TeamID: Number(card.TeamID),
-      Overs: String(card.Overs),
-      Economy: String(card.Economy),
-      StrikeRate: String(card.StrikeRate),
-    })),
-    Extras: inn.Extras?.map((extra) => ({
-      ...extra, // Preserve all original properties
-      MatchID: String(extra.MatchID),
-      InningsNo: String(extra.InningsNo),
-      TeamID: String(extra.TeamID),
-      FallWickets: String(extra.FallWickets),
-      MaxPartnerShipRuns: String(extra.MaxPartnerShipRuns),
-    })),
-    PartnershipScores: inn.PartnershipScores?.map((score) => ({
-      ...score, // Preserve all original properties
-      MatchID: String(score.MatchID),
-      BattingTeamID: String(score.BattingTeamID),
-      InningsNo: String(score.InningsNo),
-      PartnershipTotal: String(score.PartnershipTotal),
-      StrikerRuns: String(score.StrikerRuns),
-      StrikerBalls: String(score.StrikerBalls),
-      Extras: String(score.Extras),
-      NonStrikerRuns: String(score.NonStrikerRuns),
-      NonStrikerBalls: String(score.NonStrikerBalls),
-      MatchMaxOver: String(score.MatchMaxOver),
-      MatchMinOver: String(score.MatchMinOver),
-      RowNumber: String(score.RowNumber),
-    })),
-  };
-
-  return normalized;
-}
-
-function getInningsSafe(data: Innings, inningsNo: "1" | "2") {
+function getInnings(data: Innings, inningsNo: "1" | "2") {
   return inningsNo === "1" ? data.Innings1 : data.Innings2;
 }
 
-// CRUD helpers for each table
 async function insertBattingCard(row: BattingCard) {
-  return db
-    .insert(battingCard)
-    .values(filterUndefined(normalizeBattingCard(row)));
+  return db.insert(battingCard).values(normalizeBattingCard(row));
 }
 async function insertBowlingCard(row: BowlingCard) {
-  return db
-    .insert(bowlingCard)
-    .values(filterUndefined(normalizeBowlingCard(row)));
+  return db.insert(bowlingCard).values(row);
 }
 async function insertExtras(row: ExtrasType) {
-  return db.insert(extras).values(filterUndefined(normalizeExtras(row)));
+  return db.insert(extras).values(normalizeExtras(row));
 }
 async function insertPartnershipScore(row: PartnershipScore) {
-  return db
-    .insert(partnershipScore)
-    .values(filterUndefined(normalizePartnershipScore(row)));
+  return db.insert(partnershipScore).values(normalizePartnershipScore(row));
 }
 
-// Upsert helpers (delete old, insert new for simplicity)
 async function upsertBattingCards(
   matchId: number,
   inningsNo: number,
@@ -246,21 +147,6 @@ async function upsertPartnershipScores(
   for (const row of rows) await insertPartnershipScore(row);
 }
 
-// Helper to get all matches from the DB (implementing the full drizzle query here)
-import { matches } from "../server/db/matches";
-async function getAllMatchesFromDb(): Promise<Match[]> {
-  const results = await db.select().from(matches);
-  // Convert number fields to match the Match type
-  return results.map((match) => ({
-    ...match,
-    HomeTeamID: match.HomeTeamID,
-    AwayTeamID: match.AwayTeamID,
-    SecondInningsFirstBattingID: match.SecondInningsFirstBattingID,
-    SecondInningsSecondBattingID: match.SecondInningsSecondBattingID,
-    WinningTeamID: match.WinningTeamID,
-  }));
-}
-
 export async function syncInningsForMatch(matchId: string): Promise<void> {
   for (const inningsNo of ["1", "2"] as const) {
     let data: Innings;
@@ -273,39 +159,82 @@ export async function syncInningsForMatch(matchId: string): Promise<void> {
       );
       continue;
     }
-    const inn = getInningsSafe(data, inningsNo);
+    const inn = getInnings(data, inningsNo);
     if (!inn) continue;
-
-    // Type-safe normalization
-    const normInn = normalizeInnings(inn);
-    if (!normInn) continue;
 
     const matchIdNum = Number(matchId);
     const inningsNoNum = Number(inningsNo);
 
-    if (normInn.BattingCard && normInn.BattingCard.length > 0) {
-      await upsertBattingCards(matchIdNum, inningsNoNum, normInn.BattingCard);
+    if (inn.BattingCard && inn.BattingCard.length > 0) {
+      if (
+        inn.BattingCard.filter(
+          (batt) =>
+            batt.MatchID && batt.InningsNo && batt.TeamID && batt.PlayerID,
+        ).length === 0
+      ) {
+        console.warn(
+          `No valid batting cards for match ${matchId} innings ${inningsNo}`,
+        );
+      } else
+        await upsertBattingCards(matchIdNum, inningsNoNum, inn.BattingCard);
     }
-    if (normInn.BowlingCard && normInn.BowlingCard.length > 0) {
-      await upsertBowlingCards(matchIdNum, inningsNoNum, normInn.BowlingCard);
+    if (inn.BowlingCard && inn.BowlingCard.length > 0) {
+      if (
+        inn.BowlingCard.filter(
+          (batt) =>
+            batt.MatchID && batt.InningsNo && batt.TeamID && batt.PlayerID,
+        ).length === 0
+      ) {
+        console.warn(
+          `No valid bowling cards for match ${matchId} innings ${inningsNo}`,
+        );
+      } else
+        await upsertBowlingCards(matchIdNum, inningsNoNum, inn.BowlingCard);
     }
-    if (normInn.Extras && normInn.Extras.length > 0) {
-      await upsertExtras(matchIdNum, inningsNoNum, normInn.Extras);
+    if (inn.Extras && inn.Extras.length > 0) {
+      if (
+        inn.Extras.filter(
+          (batt) =>
+            batt.MatchID && batt.InningsNo && batt.TeamID && batt.FallWickets,
+        ).length === 0
+      ) {
+        console.warn(
+          `No valid extras for match ${matchId} innings ${inningsNo}`,
+        );
+      } else await upsertExtras(matchIdNum, inningsNoNum, inn.Extras);
     }
-    if (normInn.PartnershipScores && normInn.PartnershipScores.length > 0) {
-      await upsertPartnershipScores(
-        matchIdNum,
-        inningsNoNum,
-        normInn.PartnershipScores,
-      );
+    if (inn.PartnershipScores && inn.PartnershipScores.length > 0) {
+      if (
+        inn.PartnershipScores.filter(
+          (batt) =>
+            batt.MatchID &&
+            batt.InningsNo &&
+            batt.BattingTeamID &&
+            batt.StrikerID &&
+            batt.NonStrikerID,
+        ).length === 0
+      ) {
+        console.warn(
+          `No valid partnership scores for match ${matchId} innings ${inningsNo}`,
+        );
+      } else
+        await upsertPartnershipScores(
+          matchIdNum,
+          inningsNoNum,
+          inn.PartnershipScores,
+        );
     }
   }
 }
 
+async function getAllMatchesFromDb(): Promise<Matches> {
+  const result = await db.select().from(matches);
+  return matchesSchema.parse({ Matchsummary: result });
+}
+
 export default async function main(): Promise<void> {
-  // Fetch all matches from the database
   const matchesList = await getAllMatchesFromDb();
-  for (const match of matchesList) {
+  for (const match of matchesList.Matchsummary) {
     const matchId = match.MatchID;
     if (!matchId) continue;
     try {

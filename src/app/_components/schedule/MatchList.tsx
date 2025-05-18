@@ -1,16 +1,16 @@
 import { useMemo } from "react";
-import { type Match } from "~/models/matches";
+import { type Matches, type Match } from "~/models/matches";
 import { MatchCard } from "./MatchCard";
 
 interface MatchListProps {
-  matches: Match[];
+  matches: Matches;
   filter: "all" | "upcoming" | "completed";
 }
 
 export const MatchList = ({ matches, filter }: MatchListProps) => {
   const processedMatches = useMemo(
     () =>
-      matches.map((match) => ({
+      matches.Matchsummary.map((match) => ({
         ...match,
         MatchName: match.MatchName ?? "Unknown Match",
         MatchDate: match.MatchDate ?? "Unknown Date",

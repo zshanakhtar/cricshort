@@ -7,32 +7,32 @@ export const battingCardSchema = z.object({
   PlayerID: z.string(),
   PlayerName: z.string(),
   PlayerImage: z.string(),
-  PlayingOrder: z.number().nullable(),
+  PlayingOrder: z.number().or(z.string()).nullable().optional(),
   MatchPlayingOrder: z.number(),
   BowlerName: z.string(),
   OutDesc: z.string(),
-  ShortOutDesc: z.string(),
+  ShortOutDesc: z.string().nullable().optional(),
   Runs: z.number(),
   Balls: z.number(),
   DotBalls: z.number(),
-  DotBallPercentage: z.string(),
-  DotBallFrequency: z.string(),
+  DotBallPercentage: z.string().nullable().optional(),
+  DotBallFrequency: z.string().nullable().optional(),
   Ones: z.number(),
   Twos: z.number(),
   Threes: z.number(),
   Fours: z.number(),
   Sixes: z.number(),
-  BoundaryPercentage: z.string(),
-  BoundaryFrequency: z.string(),
-  StrikeRate: z.string(),
+  BoundaryPercentage: z.string().nullable().optional(),
+  BoundaryFrequency: z.string().nullable().optional(),
+  StrikeRate: z.string().nullable().optional(),
   MinOver: z.number(),
   MinStrikerOver: z.number(),
-  WicketNo: z.string().nullable(),
+  WicketNo: z.string().nullable().optional(),
   AgainstFast: z.number(),
   AgainstSpin: z.number(),
   AgainstFastPercent: z.string(),
   AgainstSpinPercent: z.string(),
-  PLAYER_ID: z.string(), // Changed to string only since DB expects string
+  PLAYER_ID: z.number(),
 });
 
 export const bowlingCardSchema = z.object({
@@ -41,16 +41,16 @@ export const bowlingCardSchema = z.object({
   TeamID: z.number(),
   PlayerID: z.string(),
   PlayerName: z.string(),
-  PlayerShortName: z.string(),
+  PlayerShortName: z.string().nullable().optional(),
   PlayerImageName: z.string(),
   PlayerImage: z.string(),
-  Overs: z.string(), // Changed to string only to match DB
+  Overs: z.number(),
   Maidens: z.number(),
   Runs: z.number(),
   Wickets: z.number(),
   Wides: z.number(),
   NoBalls: z.number(),
-  Economy: z.string(), // Changed to string only to match DB
+  Economy: z.number(),
   BowlingOrder: z.number(),
   TotalLegalBallsBowled: z.number(),
   ScoringBalls: z.number(),
@@ -64,15 +64,15 @@ export const bowlingCardSchema = z.object({
   Sixes: z.number(),
   BdryPercent: z.string(),
   BdryFreq: z.string(),
-  StrikeRate: z.string(), // Changed to string only to match DB
+  StrikeRate: z.string(),
   FourPercent: z.string(),
   SixPercent: z.string(),
 });
 
 export const extrasSchema = z.object({
-  MatchID: z.string(), // Changed to string only to match DB
-  InningsNo: z.string(), // Changed to string only to match DB
-  TeamID: z.string(), // Changed to string only to match DB
+  MatchID: z.string(),
+  InningsNo: z.number(),
+  TeamID: z.string(),
   Total: z.string(),
   TotalExtras: z.string(),
   Byes: z.string(),
@@ -82,31 +82,143 @@ export const extrasSchema = z.object({
   Penalty: z.string(),
   CurrentRunRate: z.string(),
   FallScore: z.string(),
-  FallWickets: z.string(), // Changed to string only to match DB
+  FallWickets: z.string(),
   FallOvers: z.string(),
   BattingTeamName: z.string(),
   BowlingTeamName: z.string(),
-  MaxPartnerShipRuns: z.string(), // Changed to string only to match DB
+  MaxPartnerShipRuns: z.number(),
 });
 
 export const partnershipScoreSchema = z.object({
-  MatchID: z.string(), // Changed to string only to match DB
-  BattingTeamID: z.string(), // Changed to string only to match DB
-  InningsNo: z.string(), // Changed to string only to match DB
+  MatchID: z.number(),
+  BattingTeamID: z.number(),
+  InningsNo: z.number(),
   StrikerID: z.string(),
   Striker: z.string(),
   NonStrikerID: z.string(),
   NonStriker: z.string(),
-  PartnershipTotal: z.string(), // Changed to string only to match DB
-  StrikerRuns: z.string(), // Changed to string only to match DB
-  StrikerBalls: z.string(), // Changed to string only to match DB
-  Extras: z.string(), // Changed to string only to match DB
-  NonStrikerRuns: z.string(), // Changed to string only to match DB
-  NonStrikerBalls: z.string(), // Changed to string only to match DB
-  MatchMaxOver: z.string(), // Changed to string only to match DB
-  MatchMinOver: z.string(), // Changed to string only to match DB
-  RowNumber: z.string(), // Changed to string only to match DB
+  PartnershipTotal: z.number(),
+  StrikerRuns: z.number(),
+  StrikerBalls: z.number(),
+  Extras: z.number(),
+  NonStrikerRuns: z.number(),
+  NonStrikerBalls: z.number(),
+  MatchMaxOver: z.number(),
+  MatchMinOver: z.number(),
+  RowNumber: z.number(),
 });
+
+// {
+//         "BallID": "A96A791D-F47E-474D-9579-05E45B1DC886",
+//         "BallUniqueID": "625714",
+//         "ActualBallNo": "1",
+//         "MatchID": "1855",
+//         "InningsNo": 2,
+//         "BattingTeamID": "13",
+//         "TeamName": "Chennai Super Kings",
+//         "StrikerID": "2024-100mb00000003497-dc521b85a24811",
+//         "NonStrikerID": "2021-100mb00000000601-517399b0ceaf11",
+//         "BatsManName": "Ayush Mhatre",
+//         "BowlerID": "2021-100mb00000000583-8f4c0c4491dd11",
+//         "BowlerName": "Vaibhav Arora",
+//         "BowlerType": "",
+//         "OverNo": 1,
+//         "OverName": "One",
+//         "BallNo": "1",
+//         "Runs": "0",
+//         "BallRuns": "0",
+//         "RunsText": "Zero",
+//         "ActualRuns": "0",
+//         "IsOne": "0",
+//         "IsTwo": "0",
+//         "IsThree": "0",
+//         "IsDotball": "1",
+//         "Extras": "0",
+//         "IsWide": "0",
+//         "IsNoBall": "0",
+//         "IsBye": "0",
+//         "IsLegBye": "0",
+//         "IsFour": "0",
+//         "IsSix": "0",
+//         "IsWicket": "0",
+//         "WicketType": "",
+//         "Wickets": "",
+//         "VideoFile": "KKRVSCSK07052025-CSK-Inn2-Over1-Ball1.mp4",
+//         "IsBowlerWicket": "0",
+//         "CommentOver": "Over 0.1",
+//         "BallName": "0.1",
+//         "CommentStrikers": "Vaibhav Arora TO Ayush Mhatre",
+//         "NewCommentry": "Vaibhav Arora to Ayush Mhatre - DOT BALL !!!",
+//         "Commentry": "Vaibhav Arora bowling to Ayush Mhatre, good length ball, pitching outside off stump, Ayush Mhatre plays a defensive shot on back foot, no run towards Cover Point",
+//         "UPDCommentry": "Vaibhav Arora bowling to Ayush Mhatre, good length ball, pitching outside off stump, Ayush Mhatre plays a defensive shot on back foot, no run towards Cover Point",
+//         "Day": "1",
+//         "SESSION_NO": "1",
+//         "IsExtra": "0",
+//         "OutBatsManID": "",
+//         "SNO": "625714",
+//         "Xpitch": "-93.50",
+//         "Ypitch": "14.50",
+//         "RunRuns": "0",
+//         "IsMaiden": "0",
+//         "OverImage": "",
+//         "BowlTypeID": "41",
+//         "BowlTypeName": "INSWINGER",
+//         "ShotTypeID": "50",
+//         "ShotType": "BACKFOOT DEFENCE",
+//         "IsBouncer": "0",
+//         "IsFreeHit": "0",
+//         "BallCount": "1",
+//         "BCCheck": "0",
+//         "TotalRuns": "0",
+//         "TotalWickets": "0",
+//         "BOWLING_LINE_ID": "Outside Off stump",
+//         "BOWLING_LENGTH_ID": "Good Length",
+//         "FiveHaul": "1",
+//         "HatCheck": "2021-100mb00000000583-8f4c0c4491dd11 - 0",
+//         "Flag": "0",
+//         "FlagSet": "0",
+//         "PenaltyRuns": "0",
+//         "IsFifty": "0",
+//         "IsHundred": "0",
+//         "IsTwoHundred": "0",
+//         "IsHattrick": "0"
+//       },
+export const ballbyballSchema = z.array(
+  z.object({
+    BallID: z.string(),
+    BallUniqueID: z.string(),
+    ActualBallNo: z.string(),
+    MatchID: z.string(),
+    InningsNo: z.number(),
+    BattingTeamID: z.string(),
+    TeamName: z.string(),
+    StrikerID: z.string(),
+    NonStrikerID: z.string(),
+    BatsManName: z.string(),
+    BowlerID: z.string(),
+    BowlerName: z.string(),
+    BowlerType: z.string(),
+    OverNo: z.number(),
+    OverName: z.string(),
+    BallNo: z.string(),
+    Runs: z.string(),
+    BallRuns: z.string(),
+    RunsText: z.string(),
+    ActualRuns: z.string(),
+    IsOne: z.string(),
+    IsTwo: z.string(),
+    IsThree: z.string(),
+    IsDotball: z.string(),
+    Extras: z.string(),
+    IsWide: z.string(),
+    IsNoBall: z.string(),
+    IsBye: z.string(),
+    IsLegBye: z.string(),
+    IsFour: z.string(),
+    IsSix: z.string(),
+    IsWicket: z.string().nullable().optional(),
+  }),
+);
 
 export const inningsSchema = z.object({
   Innings2: z
@@ -115,6 +227,7 @@ export const inningsSchema = z.object({
       BowlingCard: z.array(bowlingCardSchema).optional(),
       Extras: z.array(extrasSchema).optional(),
       PartnershipScores: z.array(partnershipScoreSchema).optional(),
+      Overs: z.array(ballbyballSchema).optional(),
     })
     .optional(),
   Innings1: z
@@ -123,6 +236,7 @@ export const inningsSchema = z.object({
       BowlingCard: z.array(bowlingCardSchema).optional(),
       Extras: z.array(extrasSchema).optional(),
       PartnershipScores: z.array(partnershipScoreSchema).optional(),
+      Overs: z.array(ballbyballSchema).optional(),
     })
     .optional(),
 });
@@ -132,3 +246,4 @@ export type BowlingCard = z.infer<typeof bowlingCardSchema>;
 export type Innings = z.infer<typeof inningsSchema>;
 export type Extras = z.infer<typeof extrasSchema>;
 export type PartnershipScore = z.infer<typeof partnershipScoreSchema>;
+export type BallByBall = z.infer<typeof ballbyballSchema>;

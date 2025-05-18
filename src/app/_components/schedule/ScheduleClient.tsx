@@ -1,15 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import type { Match } from "~/models/matches";
+import type { Matches } from "~/models/matches";
 import { FilterTabs } from "./FilterTabs";
 import { MatchList } from "./MatchList";
 
-interface ScheduleClientProps {
-  matches: Match[];
-}
-
-export const ScheduleClient = ({ matches }: ScheduleClientProps) => {
+export const ScheduleClient = ({ matches }: { matches: Matches }) => {
   const [filter, setFilter] = useState<"all" | "upcoming" | "completed">("all");
 
   return (

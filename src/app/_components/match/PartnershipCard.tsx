@@ -120,7 +120,7 @@ export function PartnershipCard({
   );
   return (
     <div className="mb-8">
-      <h2 className="mb-2 text-lg font-bold text-blue-700">Partnerships</h2>
+      <h2 className="text-primary-700 mb-2 text-lg font-bold">Partnerships</h2>
       <div className="flex flex-col gap-4">
         {uniquePartnerships.filter(Boolean).map((p, idx) => {
           if (!p) return null;

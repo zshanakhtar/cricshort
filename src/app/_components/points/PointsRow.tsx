@@ -10,12 +10,12 @@ export const PointsRow = ({ entry }: PointsRowProps) => (
     <td className="px-10 py-4 font-medium text-gray-700">{entry.OrderNo}</td>
     <td className="flex items-center gap-6 px-10 py-4 text-left">
       {entry.TeamName && entry.TeamLogo && (
-    // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={entry.TeamLogo}
-        alt={entry.TeamName}
-        className="h-8 w-8 rounded-full bg-white shadow"
-      />
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={entry.TeamLogo}
+          alt={entry.TeamName}
+          className="h-8 w-8 rounded-full bg-white shadow"
+        />
       )}
       <span className="font-semibold text-gray-800">{entry.TeamName}</span>
     </td>

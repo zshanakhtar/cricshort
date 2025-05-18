@@ -1,7 +1,5 @@
 import { db } from "../server/db/index";
-import {
-  points as pointsTable,
-} from "../server/db/points";
+import { points as pointsTable } from "../server/db/points";
 import { matches } from "../server/db/matches";
 import { eq, and } from "drizzle-orm";
 import { pointsSchema, type PointEntry } from "../models/points";
@@ -75,8 +73,8 @@ async function createOrUpdatePointEntry(entry: PointEntry): Promise<void> {
   if (normalizedEntry.MATCH_ID) {
     const matchIdNum = Number(normalizedEntry.MATCH_ID);
     if (!isNaN(matchIdNum) && !(await matchExists(normalizedEntry.MATCH_ID))) {
-    //   await insertMatch(db, { MatchID: matchIdNum });
-    await db
+      //   await insertMatch(db, { MatchID: matchIdNum });
+      await db
         .insert(matches)
         .values({ MatchID: matchIdNum })
         .onConflictDoNothing();
@@ -92,10 +90,7 @@ async function createOrUpdatePointEntry(entry: PointEntry): Promise<void> {
       .where(eq(pointsTable.id, existing.id));
   } else {
     // await insertPoints(db, normalizedEntry);
-    await db
-      .insert(pointsTable)
-      .values(normalizedEntry)
-      .onConflictDoNothing();
+    await db.insert(pointsTable).values(normalizedEntry).onConflictDoNothing();
   }
 }
 

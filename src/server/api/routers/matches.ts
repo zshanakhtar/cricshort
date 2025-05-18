@@ -3,6 +3,7 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { db } from "~/server/db/index";
 import { matches } from "~/server/db/matches";
 import { eq } from "drizzle-orm";
+import { matchesSchema } from "~/models/matches";
 
 export const matchesRouter = createTRPCRouter({
   getMatchById: publicProcedure
@@ -18,6 +19,6 @@ export const matchesRouter = createTRPCRouter({
 
   getAllMatches: publicProcedure.query(async () => {
     const result = await db.select().from(matches);
-    return result;
+    return matchesSchema.parse({ Matchsummary: result });
   }),
 });

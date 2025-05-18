@@ -15,7 +15,6 @@ export const inningsRouter = createTRPCRouter({
     .query(async ({ input }) => {
       const matchIdNum = Number(input.matchId);
       const inningsNo = Number(input.innings);
-      // Fetch all relevant data for the match and innings
       const [batting, bowling, extrasData, partnerships] = await Promise.all([
         db
           .select()

@@ -17,7 +17,7 @@ export function Header() {
           alt="Logo"
           width={40}
           height={40}
-          className="dark:bg-primary-dark-900 ring-secondary-light-400 ml-2 inline-block h-8 w-8 rounded-full bg-white shadow-md ring-1 dark:ring-transparent"
+          className="dark:bg-primary-dark-50 ring-secondary-light-400 ml-2 inline-block h-8 w-8 rounded-full bg-white shadow-md ring-1 dark:ring-transparent"
         />
         <span>CricShort</span>
       </Link>

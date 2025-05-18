@@ -20,11 +20,11 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
   const getStatusColor = (status: string | null) => {
     switch (status) {
       case "Live":
-        return "bg-red-500 text-white";
+        return "bg-accent-secondary-light-500 dark:bg-accent-secondary-dark-500 text-white";
       case "Post":
-        return "text-gray-500";
+        return "text-primary-light-500 dark:text-primary-dark-500";
       default:
-        return "text-blue-500";
+        return "text-accent-secondary-light-500 dark:text-accent-secondary-dark-500";
     }
   };
 
@@ -54,23 +54,29 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
 
   return (
     <div
-      className={`flex flex-col gap-4 rounded-2xl bg-gradient-to-br from-white to-gray-50 p-6 shadow-md transition-all duration-200 outline-none ${clickable ? "cursor-pointer hover:bg-blue-50/40 hover:shadow-2xl focus:bg-blue-100/40 focus:shadow-2xl" : "cursor-default"}`}
+      className={`dark:from-secondary-dark-200 dark:to-secondary-dark-100 border-secondary-light-400 flex flex-col gap-4 rounded-2xl border bg-white p-6 shadow-lg transition-all duration-200 outline-none dark:border-transparent dark:bg-gradient-to-br ${
+        clickable
+          ? "hover:bg-accent-primary-light-950/5 dark:hover:bg-accent-primary-dark-100/10 focus:bg-accent-primary-light-900/10 dark:focus:bg-accent-primary-dark-200/20 cursor-pointer hover:shadow-xl focus:shadow-xl"
+          : "cursor-default"
+      }`}
       tabIndex={clickable ? 0 : -1}
       onClick={handleCardClick}
     >
       <div className="mb-2 flex w-full items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold text-gray-400">
+          <span className="text-secondary-light-200 dark:text-secondary-dark-800 text-xs font-semibold">
             #{match.MatchOrder ?? ""}
           </span>
           {match.MatchStatus === "Live" && (
-            <span className="animate-pulse rounded-md bg-red-500/90 px-3 py-1 text-xs font-bold text-white shadow-sm">
+            <span className="bg-accent-secondary-light-500 dark:bg-accent-secondary-dark-500 ring-accent-secondary-light-600 animate-pulse rounded-md px-3 py-1 text-xs font-bold text-white shadow-sm ring-1">
               LIVE
             </span>
           )}
           {match.MatchStatus !== "Live" && (
             <span
-              className={`rounded-md px-2 py-1 text-xs font-semibold shadow-sm ${getStatusColor(match.MatchStatus)} bg-gray-100/80`}
+              className={`rounded-md px-2 py-1 text-xs font-semibold shadow-sm ${getStatusColor(
+                match.MatchStatus,
+              )} bg-secondary-light-800/10 dark:bg-secondary-dark-200 ring-secondary-light-400 ring-1 dark:ring-transparent`}
             >
               {match.MatchStatus === "Post"
                 ? "Completed"
@@ -80,17 +86,15 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
             </span>
           )}
         </div>
-        <span className="rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-500">
+        <span className="bg-secondary-light-900 dark:bg-secondary-dark-200 text-primary-light-600 dark:text-primary-dark-200 rounded px-2 py-1 text-xs font-medium">
           {match.MatchDateNew ?? match.MatchDate ?? "TBD"} •{" "}
           {match.MatchTime ? `${match.MatchTime} IST` : "TBD"}
         </span>
       </div>
 
-      {/* Teams Row */}
-      <div className="flex items-center justify-between rounded-xl bg-gray-50 px-4 py-3 shadow-inner">
-        {/* Home Team */}
+      <div className="bg-secondary-light-800/10 dark:bg-secondary-dark-200 flex items-center justify-between rounded-xl px-4 py-3 shadow-inner">
         <div className="flex min-w-0 items-center gap-3">
-          <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
+          <div className="dark:bg-secondary-dark-50 relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
             {match.HomeTeamLogo && match.HomeTeamName && (
               <Image
                 src={match.HomeTeamLogo}
@@ -101,24 +105,24 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
             )}
           </div>
           <div className="flex min-w-0 flex-col">
-            <span className="hidden truncate text-base font-bold text-gray-800 lg:block">
+            <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold lg:block">
               {match.HomeTeamName ?? "TBD"}
             </span>
-            <span className="hidden truncate text-base font-bold text-gray-800 sm:block lg:hidden">
+            <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold sm:block lg:hidden">
               {homeTeamShortName || "TBD"}
             </span>
-            <span className="truncate text-base font-bold text-gray-800 sm:hidden">
+            <span className="text-primary-light-500 dark:text-primary-dark-100 truncate text-base font-bold sm:hidden">
               {homeTeamShortName || "TBD"}
             </span>
           </div>
         </div>
         <div className="mx-2 flex flex-col items-center">
-          <span className="text-xs font-semibold tracking-widest text-gray-400">
+          <span className="text-secondary-light-100 dark:text-secondary-dark-600 text-xs font-semibold tracking-widest">
             VS
           </span>
         </div>
         <div className="flex min-w-0 flex-row-reverse items-center gap-3">
-          <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
+          <div className="dark:bg-secondary-dark-50 relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
             {match.AwayTeamLogo && match.AwayTeamName && (
               <Image
                 src={match.AwayTeamLogo}
@@ -129,29 +133,27 @@ export const MatchCard = ({ match, clickable = false }: MatchCardProps) => {
             )}
           </div>
           <div className="flex min-w-0 flex-col text-right">
-            <span className="hidden truncate text-base font-bold text-gray-800 lg:block">
+            <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold lg:block">
               {match.AwayTeamName ?? "TBD"}
             </span>
-            <span className="hidden truncate text-base font-bold text-gray-800 sm:block lg:hidden">
+            <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold sm:block lg:hidden">
               {awayTeamShortName || "TBD"}
             </span>
-            <span className="truncate text-base font-bold text-gray-800 sm:hidden">
+            <span className="text-primary-light-500 dark:text-primary-dark-100 truncate text-base font-bold sm:hidden">
               {awayTeamShortName || "TBD"}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Match Result / Comments */}
       <div className="mt-1 text-center">
-        <span className="inline-block rounded-lg bg-blue-50 px-3 py-2 text-sm font-semibold text-blue-700 shadow-sm">
+        <span className="bg-accent-secondary-light-500/10 dark:bg-accent-primary-dark-600 text-accent-secondary-light-500 dark:text-secondary-dark-50 ring-accent-secondary-light-500/20 inline-block rounded-lg px-3 py-2 text-sm font-semibold shadow-sm ring-1 dark:ring-transparent">
           {getMatchResult(match)}
         </span>
       </div>
 
-      {/* Ground & City */}
-      <div className="mt-1 text-center text-xs text-gray-500">
-        <span className="inline-block rounded bg-gray-100 px-2 py-1 font-medium">
+      <div className="text-primary-light-600 dark:text-primary-dark-200 mt-1 text-center text-xs">
+        <span className="bg-secondary-light-800/10 dark:bg-secondary-dark-200 ring-secondary-light-400/20 inline-block rounded px-2 py-1 font-medium ring-1 dark:ring-transparent">
           {match.GroundName ?? "TBD"}
           {match.city ? `, ${match.city}` : ""}
         </span>

@@ -6,33 +6,33 @@ interface FilterTabsProps {
 
 export const FilterTabs = ({ currentFilter }: FilterTabsProps) => {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="mb-4 flex flex-wrap gap-2">
       <Link
         href="/matches"
-        className={`rounded-full px-4 py-2 text-sm transition-colors ${
+        className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
           currentFilter === "all"
-            ? "bg-accent-primary-light-600 dark:bg-accent-primary-dark-600"
-            : "text-accent-primary-light-600 dark:text-accent-primary-dark-100 bg-transparent hover:bg-gray-50"
+            ? "bg-accent-secondary-light-500 dark:bg-accent-secondary-dark-500 border-transparent text-white"
+            : "text-accent-secondary-light-500 dark:text-accent-secondary-dark-500 border-accent-secondary-light-500 dark:border-accent-secondary-dark-500 hover:bg-accent-secondary-light-500/10 dark:hover:bg-accent-secondary-dark-500/10 bg-transparent"
         }`}
       >
         All Matches
       </Link>
       <Link
         href="/matches/upcoming"
-        className={`rounded-full px-4 py-2 text-sm transition-colors ${
+        className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
           currentFilter === "upcoming"
-            ? "bg-accent-primary-light-600 dark:bg-accent-primary-dark-600"
-            : "text-accent-primary-light-600 dark:text-accent-primary-dark-100 bg-transparent hover:bg-gray-50"
+            ? "bg-accent-secondary-light-500 dark:bg-accent-secondary-dark-500 border-transparent text-white"
+            : "text-accent-secondary-light-500 dark:text-accent-secondary-dark-500 border-accent-secondary-light-500 dark:border-accent-secondary-dark-500 hover:bg-accent-secondary-light-500/10 dark:hover:bg-accent-secondary-dark-500/10 bg-transparent"
         }`}
       >
         Upcoming
       </Link>
       <Link
         href="/matches/completed"
-        className={`rounded-full px-4 py-2 text-sm transition-colors ${
+        className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
           currentFilter === "completed"
-            ? "bg-accent-primary-light-600 dark:bg-accent-primary-dark-600"
-            : "text-accent-primary-light-600 dark:text-accent-primary-dark-100 bg-transparent hover:bg-gray-50"
+            ? "bg-accent-secondary-light-500 dark:bg-accent-secondary-dark-500 border-transparent text-white"
+            : "text-accent-secondary-light-500 dark:text-accent-secondary-dark-500 border-accent-secondary-light-500 dark:border-accent-secondary-dark-500 hover:bg-accent-secondary-light-500/10 dark:hover:bg-accent-secondary-dark-500/10 bg-transparent"
         }`}
       >
         Completed

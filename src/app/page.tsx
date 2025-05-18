@@ -6,7 +6,7 @@ import { PointsTable } from "./_components/points/PointsTable";
 export default async function SchedulePage() {
   const matches = await api.matches.getAllMatches();
   const points = await api.points.getPoints();
-  
+
   const livematchData = (() => {
     const liveMatch = matches.Matchsummary.find(
       (match) => match.MatchStatus === "Live",
@@ -21,9 +21,9 @@ export default async function SchedulePage() {
     );
   }
   return (
-    <>
+    <div className="flex h-full w-full flex-col gap-6 justify-center">
       <PointsTable points={points} />
       <MatchList matches={matches} filter="upcoming" />
-    </>
+    </div>
   );
 }

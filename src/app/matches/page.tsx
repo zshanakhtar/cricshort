@@ -6,8 +6,8 @@ export default async function SchedulePage() {
   const matches = await api.matches.getAllMatches();
   return (
     <>
-      <FilterTabs currentFilter="all" />
-      <MatchList matches={matches} filter="all" />
-    </>
+        <FilterTabs currentFilter="all" />
+        <MatchList matches={matches} filter="all" />
+        </>
   );
 }

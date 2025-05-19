@@ -9,8 +9,9 @@
 FROM oven/bun AS base
 WORKDIR /usr/src/app
 
-# install dependencies into temp directory
-# this will cache them and speed up future builds
+USER root
+RUN apt-get update && apt-get install -y cron
+
 FROM base AS install
 RUN mkdir -p /temp/dev
 COPY package.json bun.lockb /temp/dev/
@@ -37,7 +38,21 @@ COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/app .
 COPY --from=prerelease /usr/src/app/package.json .
 
-# run the app in production mode
-USER bun
+# Add crontab file
+COPY crontab /etc/cron.d/bun-cron
+RUN chmod 0644 /etc/cron.d/bun-cron
+RUN crontab /etc/cron.d/bun-cron
+
+# Create log files
+RUN touch /var/log/cron.log /var/log/innings.log /var/log/matches.log /var/log/points.log
+
+# Add the startup script
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
 EXPOSE 3000/tcp
-ENTRYPOINT [ "bun", "run", "start" ]
+
+# Run as bun user
+# USER bun
+
+ENTRYPOINT ["/usr/local/bin/start.sh"]

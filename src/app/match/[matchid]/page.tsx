@@ -95,37 +95,8 @@ export default function MatchPage() {
 
       <MatchCard match={match} />
 
-      <div className="bg-primary-dark-500 mt-4 rounded-2xl p-6 shadow-md">
-        {/* <div className="mb-4 flex gap-2">
-          <button
-            className={`rounded-2xl px-4 py-2 font-semibold shadow transition-all duration-150 focus:ring-2 focus:ring-blue-400 focus:outline-none ${
-              tab === "scorecard"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-100 text-blue-700 hover:bg-blue-50"
-            }`}
-            onClick={() => setTab("scorecard")}
-          >
-            Scorecard
-          </button>
-          <button
-            className={`rounded-2xl px-4 py-2 font-semibold shadow transition-all duration-150 focus:ring-2 focus:ring-blue-400 focus:outline-none ${
-              tab === "commentary"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-100 text-blue-700 hover:bg-blue-50"
-            }`}
-            onClick={() => setTab("commentary")}
-          >
-            Commentary
-          </button>
-        </div> */}
         <div className="mt-4">
-          {tab === "scorecard" && <ScoreCard matchId={matchid} />}
-          {tab === "commentary" && (
-            <p className="text-gray-600">
-              Ball by ball commentary will appear here...
-            </p>
-          )}
-        </div>
+          <ScoreCard matchId={matchid} />
       </div>
     </div>
   );

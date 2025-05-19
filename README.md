@@ -7,7 +7,7 @@ A T3 Stack application for cricket match management and statistics.
 ```bash
 # Build and run the application
 docker build -t cs .
-docker run -p 3000:3000 --name cricshort cs
+docker run -d -p 3001:3000 --name cricshort cs
 ```
 
 Access the application at http://localhost:3000/

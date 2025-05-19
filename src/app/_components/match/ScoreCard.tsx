@@ -5,6 +5,7 @@ import type {
   Extras,
 } from "~/models/innings";
 import { api } from "~/trpc/react";
+import { BallByBall } from "./BallByBall";
 import { PartnershipCard } from "./PartnershipCard";
 
 const defaultLogo = "/favicon.ico";
@@ -14,7 +15,7 @@ function ExtrasCard({ extras }: { extras: Extras[] }) {
   if (!e) return null;
   return (
     <div className="bg-accent-primary-light-950 dark:bg-accent-primary-dark-50 mb-4 rounded-xl p-2 shadow-inner sm:p-4">
-      <div className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 mb-2 text-sm font-bold">
+      <div className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-500 mb-2 text-sm font-bold">
         Extras
       </div>
       <div className="text-primary-light-800 dark:text-primary-dark-800 flex flex-wrap gap-2 text-sm sm:gap-4">
@@ -38,7 +39,7 @@ function ExtrasCard({ extras }: { extras: Extras[] }) {
 function BattingCard({ battingCard }: { battingCard: BattingCardType[] }) {
   return (
     <div className="mb-4 sm:mb-8">
-      <h2 className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 mb-2 text-lg font-bold">
+      <h2 className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-500 mb-2 text-lg font-bold">
         Batting
       </h2>
       <div className="from-secondary-light-800 to-secondary-light-900 dark:from-secondary-dark-100 dark:to-secondary-dark-200 overflow-x-auto rounded-2xl bg-gradient-to-br shadow-md">
@@ -107,7 +108,7 @@ function BattingCard({ battingCard }: { battingCard: BattingCardType[] }) {
 function BowlingCard({ bowlingCard }: { bowlingCard: BowlingCardType[] }) {
   return (
     <div className="mb-4 sm:mb-8">
-      <h2 className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-800 mb-2 text-lg font-bold">
+      <h2 className="text-accent-secondary-light-800 dark:text-accent-secondary-dark-500 mb-2 text-lg font-bold">
         Bowling
       </h2>
       <div className="from-secondary-light-800 to-secondary-light-900 dark:from-secondary-dark-100 dark:to-secondary-dark-200 overflow-x-auto rounded-2xl bg-gradient-to-br shadow-md">
@@ -246,6 +247,9 @@ export default function ScoreCard({ matchId }: ScoreCardProps) {
           {innings1Partnerships && (
             <PartnershipCard partnerships={innings1Partnerships} />
           )}
+          {innings1.data?.Innings1?.BallByBall && (
+            <BallByBall ballByBall={innings1.data.Innings1.BallByBall} />
+          )}
         </>
       )}
       {selectedInnings === "2" && innings2.data?.Innings2 && (
@@ -255,6 +259,9 @@ export default function ScoreCard({ matchId }: ScoreCardProps) {
           {innings2Extras && <ExtrasCard extras={innings2Extras} />}
           {innings2Partnerships && (
             <PartnershipCard partnerships={innings2Partnerships} />
+          )}
+          {innings2.data?.Innings2?.BallByBall && (
+            <BallByBall ballByBall={innings2.data.Innings2.BallByBall} />
           )}
         </>
       )}

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 // import { useMemo } from "react";
 import type { Match } from "~/models/matches";
@@ -102,57 +103,115 @@ export function MatchCard({ match, clickable = false }: MatchCardProps) {
       </div>
 
       <div className="bg-secondary-light-800/10 dark:bg-secondary-dark-200 flex items-center justify-between rounded-xl px-4 py-3 shadow-inner">
-        <div className="flex min-w-0 items-center gap-3">
-          <div className="dark:bg-secondary-dark-50 relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
-            {match.HomeTeamLogo && match.HomeTeamName && (
-              <Image
-                src={match.HomeTeamLogo}
-                alt={match.HomeTeamName}
-                fill
-                className="object-contain p-1"
-              />
-            )}
+        {clickable ? (
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="dark:bg-secondary-dark-50 relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
+              {match.HomeTeamLogo && match.HomeTeamName && (
+                <Image
+                  src={match.HomeTeamLogo}
+                  alt={match.HomeTeamName}
+                  fill
+                  className="object-contain p-1"
+                />
+              )}
+            </div>
+            <div className="flex min-w-0 flex-col">
+              <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold lg:block">
+                {match.HomeTeamName ?? "TBD"}
+              </span>
+              <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold sm:block lg:hidden">
+                {homeTeamShortName ?? "TBD"}
+              </span>
+              <span className="text-primary-light-500 dark:text-primary-dark-100 truncate text-base font-bold sm:hidden">
+                {homeTeamShortName ?? "TBD"}
+              </span>
+            </div>
           </div>
-          <div className="flex min-w-0 flex-col">
-            <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold lg:block">
-              {match.HomeTeamName ?? "TBD"}
-            </span>
-            <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold sm:block lg:hidden">
-              {homeTeamShortName ?? "TBD"}
-            </span>
-            <span className="text-primary-light-500 dark:text-primary-dark-100 truncate text-base font-bold sm:hidden">
-              {homeTeamShortName ?? "TBD"}
-            </span>
-          </div>
-        </div>
+        ) : (
+          <Link
+            href={`/matches/${match.HomeTeamID}`}
+            className="hover:bg-secondary-dark-600 flex min-w-0 items-center gap-3 rounded-lg p-1"
+          >
+            <div className="dark:bg-secondary-dark-50 relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
+              {match.HomeTeamLogo && match.HomeTeamName && (
+                <Image
+                  src={match.HomeTeamLogo}
+                  alt={match.HomeTeamName}
+                  fill
+                  className="object-contain p-1"
+                />
+              )}
+            </div>
+            <div className="flex min-w-0 flex-col">
+              <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold lg:block">
+                {match.HomeTeamName ?? "TBD"}
+              </span>
+              <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold sm:block lg:hidden">
+                {homeTeamShortName ?? "TBD"}
+              </span>
+              <span className="text-primary-light-500 dark:text-primary-dark-100 truncate text-base font-bold sm:hidden">
+                {homeTeamShortName ?? "TBD"}
+              </span>
+            </div>
+          </Link>
+        )}
         <div className="mx-2 flex flex-col items-center">
           <span className="text-secondary-light-100 dark:text-secondary-dark-600 text-xs font-semibold tracking-widest">
             VS
           </span>
         </div>
-        <div className="flex min-w-0 flex-row-reverse items-center gap-3">
-          <div className="dark:bg-secondary-dark-50 relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
-            {match.AwayTeamLogo && match.AwayTeamName && (
-              <Image
-                src={match.AwayTeamLogo}
-                alt={match.AwayTeamName}
-                fill
-                className="object-contain p-1"
-              />
-            )}
+        {clickable ? (
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="dark:bg-secondary-dark-50 relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
+              {match.AwayTeamLogo && match.AwayTeamName && (
+                <Image
+                  src={match.AwayTeamLogo}
+                  alt={match.AwayTeamName}
+                  fill
+                  className="object-contain p-1"
+                />
+              )}
+            </div>
+            <div className="flex min-w-0 flex-col text-right">
+              <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold lg:block">
+                {match.AwayTeamName ?? "TBD"}
+              </span>
+              <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold sm:block lg:hidden">
+                {awayTeamShortName ?? "TBD"}
+              </span>
+              <span className="text-primary-light-500 dark:text-primary-dark-100 truncate text-base font-bold sm:hidden">
+                {awayTeamShortName ?? "TBD"}
+              </span>
+            </div>
           </div>
-          <div className="flex min-w-0 flex-col text-right">
-            <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold lg:block">
-              {match.AwayTeamName ?? "TBD"}
-            </span>
-            <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold sm:block lg:hidden">
-              {awayTeamShortName ?? "TBD"}
-            </span>
-            <span className="text-primary-light-500 dark:text-primary-dark-100 truncate text-base font-bold sm:hidden">
-              {awayTeamShortName ?? "TBD"}
-            </span>
-          </div>
-        </div>
+        ) : (
+          <Link
+            href={`/matches/${match.AwayTeamID}`}
+            className="hover:bg-secondary-dark-600 flex min-w-0 items-center gap-3 rounded-lg p-1"
+          >
+            <div className="dark:bg-secondary-dark-50 relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
+              {match.AwayTeamLogo && match.AwayTeamName && (
+                <Image
+                  src={match.AwayTeamLogo}
+                  alt={match.AwayTeamName}
+                  fill
+                  className="object-contain p-1"
+                />
+              )}
+            </div>
+            <div className="flex min-w-0 flex-col text-right">
+              <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold lg:block">
+                {match.AwayTeamName ?? "TBD"}
+              </span>
+              <span className="text-primary-light-500 dark:text-primary-dark-100 hidden truncate text-base font-bold sm:block lg:hidden">
+                {awayTeamShortName ?? "TBD"}
+              </span>
+              <span className="text-primary-light-500 dark:text-primary-dark-100 truncate text-base font-bold sm:hidden">
+                {awayTeamShortName ?? "TBD"}
+              </span>
+            </div>
+          </Link>
+        )}
       </div>
 
       <div className="mt-1 text-center">

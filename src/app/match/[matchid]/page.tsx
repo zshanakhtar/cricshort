@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { MatchCard } from "~/app/_components/schedule/MatchCard";
 import type { Match } from "~/models/matches";
 import { api } from "~/trpc/react";
@@ -18,8 +18,6 @@ function isValidMatch(data: unknown): data is Match {
 }
 
 export default function MatchPage() {
-  const [tab, setTab] = useState<"scorecard" | "commentary">("scorecard");
-
   const params = useParams();
   const matchid = useMemo(() => {
     if (!params || typeof params.matchid !== "string") return null;
@@ -92,11 +90,9 @@ export default function MatchPage() {
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">Match Details</h1>
-
       <MatchCard match={match} />
-
-        <div className="mt-4">
-          <ScoreCard matchId={matchid} />
+      <div className="mt-4">
+        <ScoreCard matchId={matchid} />
       </div>
     </div>
   );

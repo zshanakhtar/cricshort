@@ -30,7 +30,7 @@ export function BallByBall({ ballByBall }: BallByBallProps) {
 
       {sortedOvers.map(({ overNo, balls }) => {
         const runsSummary = balls
-        .filter((ball) => ball.BallID && ball.BatsManName)
+          .filter((ball) => ball.BallID && ball.BatsManName)
           .map((ball) => {
             if (ball.IsWicket === "true") return "W";
             if (ball.BallRuns && ball.BallRuns !== "0") return ball.BallRuns;
@@ -48,23 +48,28 @@ export function BallByBall({ ballByBall }: BallByBallProps) {
               </div>
               <div className="text-primary-light-400 dark:text-primary-dark-600 font-mono text-sm tracking-widest">
                 {runsSummary.map((run, i) => (
-                    <span key={i} className="rounded-full border px-1 text-center text-accent-primary-dark-500 border-accent-primary-dark-500 m-1">
-                      {run}
-                    </span>
+                  <span
+                    key={i}
+                    className="text-accent-primary-dark-500 border-accent-primary-dark-500 m-1 rounded-full border px-1 text-center"
+                  >
+                    {run}
+                  </span>
                 ))}
               </div>
             </div>
             <div className="space-y-2">
-              {balls.filter((ball) => ball.BallID && ball.BatsManName).map((ball) => (
-                <div
-                  key={
-                    ball.BallUniqueID ??
-                    `${ball.MatchID}-${ball.InningsNo}-${ball.BallID}`
-                  }
-                  className="border-accent-primary-light-400 items-center dark:border-accent-primary-dark-400 flex gap-3 rounded-lg border bg-transparent p-3"
-                >
-                  <div className="text-accent-primary-light-600 dark:text-accent-primary-dark-600 h-6 w-6 font-mono text-lg font-bold">
-                    {/* <span className="h-full align-middle "> */}
+              {balls
+                .filter((ball) => ball.BallID && ball.BatsManName)
+                .map((ball) => (
+                  <div
+                    key={
+                      ball.BallUniqueID ??
+                      `${ball.MatchID}-${ball.InningsNo}-${ball.BallID}`
+                    }
+                    className="border-accent-primary-light-400 dark:border-accent-primary-dark-400 flex items-center gap-3 rounded-lg border bg-transparent p-3"
+                  >
+                    <div className="text-accent-primary-light-600 dark:text-accent-primary-dark-600 h-6 w-6 font-mono text-lg font-bold">
+                      {/* <span className="h-full align-middle "> */}
                       {ball.IsWicket === "true"
                         ? "W"
                         : ball.IsDotball === "true"
@@ -74,20 +79,20 @@ export function BallByBall({ ballByBall }: BallByBallProps) {
                             : ball.IsWide === "true"
                               ? "WD"
                               : ball.BallRuns}
-                    {/* </span> */}
-                  </div>
+                      {/* </span> */}
+                    </div>
 
-                  <div className="text-primary-light-600 dark:text-secondary-dark-800  flex-1 text-xs">
-                    <div className="font-semibold">{ball.BatsManName}</div>
-                    <div
-                      className=" text-primary-light-800 dark:text-primary-dark-800 whitespace-pre-wrap"
-                      title={ball.Commentry ?? ball.RunsText ?? "-"}
-                    >
-                      {ball.Commentry ?? ball.RunsText ?? "-"}
+                    <div className="text-primary-light-600 dark:text-secondary-dark-800 flex-1 text-xs">
+                      <div className="font-semibold">{ball.BatsManName}</div>
+                      <div
+                        className="text-primary-light-800 dark:text-primary-dark-800 whitespace-pre-wrap"
+                        title={ball.Commentry ?? ball.RunsText ?? "-"}
+                      >
+                        {ball.Commentry ?? ball.RunsText ?? "-"}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         );
